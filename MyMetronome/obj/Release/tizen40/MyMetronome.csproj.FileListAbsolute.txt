@@ -1,0 +1,12 @@
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\bin\Release\tizen40\MyMetronome.deps.json
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\bin\Release\tizen40\MyMetronome.dll
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\App.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\MainPage.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\Metronome.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\Player.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\Settings.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\MyMetronome.csproj.CoreCompileInputs.cache
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\MyMetronome.AssemblyInfoInputs.cache
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\MyMetronome.AssemblyInfo.cs
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\XamlC.stamp
+C:\Users\fanap\source\repos\MyMetronome\MyMetronome\obj\Release\tizen40\MyMetronome.dll
