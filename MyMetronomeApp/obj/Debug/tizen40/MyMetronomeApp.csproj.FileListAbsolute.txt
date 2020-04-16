@@ -1,0 +1,15 @@
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\MyMetronomeApp.deps.json
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\MyMetronomeApp.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\MyMetronomeApp.pdb
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.csprojAssemblyReference.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\App.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MainPage.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\Metronome.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\Player.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\Settings.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.csproj.CoreCompileInputs.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.AssemblyInfoInputs.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.AssemblyInfo.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\XamlC.stamp
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.pdb

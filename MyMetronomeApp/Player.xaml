@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage
+    x:Class="MyMetronomeApp.Player"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    NavigationPage.HasNavigationBar="False"
+    RotaryFocusObject="{x:Reference bpm}">
+    <c:CirclePage.Content>
+        <StackLayout>
+            <Label
+                HorizontalOptions="CenterAndExpand"
+                Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" />
+            <Button
+                BackgroundColor="#E65100"
+                Clicked="OnClick"
+                HeightRequest="80"
+                WidthRequest="80" />
+        </StackLayout>
+    </c:CirclePage.Content>
+    <c:CirclePage.CircleSurfaceItems>
+        <c:CircleSliderSurfaceItem
+            x:Name="bpm"
+            Increment="1"
+            Maximum="300"
+            Minimum="1"
+            Value="120" />
+    </c:CirclePage.CircleSurfaceItems>
+</c:CirclePage>

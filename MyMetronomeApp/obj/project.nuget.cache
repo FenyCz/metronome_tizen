@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "2bAzzq1T2XxW3/EkPR3f1npyaMY3HtUd5PASCArBWVyFPzR0QbjtLrvplXqt21OKyUP2oWC4RCgVhlVDFpfrtg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\fanap\\source\\repos\\MyMetronomeApp\\MyMetronomeApp\\MyMetronomeApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\fanap\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
+    "C:\\Users\\fanap\\.nuget\\packages\\tizen.net\\6.0.0.14995\\tizen.net.6.0.0.14995.nupkg.sha512",
+    "C:\\Users\\fanap\\.nuget\\packages\\tizen.net.api4\\4.0.1.14164\\tizen.net.api4.4.0.1.14164.nupkg.sha512",
+    "C:\\Users\\fanap\\.nuget\\packages\\tizen.wearable.circularui\\1.3.2\\tizen.wearable.circularui.1.3.2.nupkg.sha512",
+    "C:\\Users\\fanap\\.nuget\\packages\\xamarin.forms\\4.2.0.709249\\xamarin.forms.4.2.0.709249.nupkg.sha512"
+  ],
+  "logs": []
+}

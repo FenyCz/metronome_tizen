@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c:CirclePage
+    x:Class="MyMetronomeApp.Metronome"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    xmlns:local="clr-namespace:MyMetronomeApp.ViewModel"
+    BackgroundColor="#002554"
+    NavigationPage.HasNavigationBar="False"
+    RotaryFocusObject="{x:Reference bpm}">
+
+    <c:CirclePage.Content>
+        <StackLayout
+            HeightRequest="180"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Center"
+            WidthRequest="180">
+            <Label
+                x:Name="label"
+                BindingContext="{x:Reference Name=bpm}"
+                FontSize="25"
+                HorizontalTextAlignment="Center"
+                Text="{Binding Value}"
+                VerticalTextAlignment="Center" />
+            <StackLayout
+                HorizontalOptions="Center"
+                Orientation="Vertical"
+                VerticalOptions="Center">
+                <Button
+                    BackgroundColor="#E65100"
+                    Clicked="OnClick"
+                    Command="{Binding StartMetronome}"
+                    HeightRequest="80"
+                    ImageSource="images/play.png"
+                    WidthRequest="80" />
+            </StackLayout>
+        </StackLayout>
+    </c:CirclePage.Content>
+    <c:CirclePage.CircleSurfaceItems>
+        <c:CircleSliderSurfaceItem
+            x:Name="bpm"
+            BackgroundAngle="340"
+            BackgroundAngleOffset="190"
+            BackgroundColor="#ff833a"
+            BackgroundLineWidth="2"
+            BackgroundRadius="170"
+            BarAngleMaximum="350"
+            BarAngleMinimum="10"
+            BarAngleOffset="180"
+            BarColor="#E65100"
+            BarLineWidth="15"
+            Increment="1"
+            Maximum="300"
+            Minimum="1"
+            Value="{Binding CurrentValue, Mode=TwoWay}" />
+        <c:CircleSliderSurfaceItem
+            BackgroundColor="White"
+            BackgroundLineWidth="25"
+            BackgroundRadius="148"
+            BarColor="White"
+            BarRadius="70" />
+    </c:CirclePage.CircleSurfaceItems>
+</c:CirclePage>

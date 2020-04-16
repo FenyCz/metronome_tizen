@@ -1,0 +1,17 @@
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\MyMetronomeApp.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\MyMetronomeApp.pdb
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Tizen.Wearable.CircularUI.Forms.Renderer.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Tizen.Wearable.CircularUI.Forms.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.Tizen.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Platform.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Xaml.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\MyMetronomeApp.deps.json
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\iconMetronome.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\iconPlayer.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\iconSettings.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\play.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\stop.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\shared\res\MyMetronomeApp.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\org.tizen.example.MyMetronomeApp-1.0.0.tpk
