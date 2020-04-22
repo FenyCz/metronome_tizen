@@ -30,6 +30,9 @@
     <Compile Update="Metronome.xaml.cs">
       <DependentUpon>Metronome.xaml</DependentUpon>
     </Compile>
+    <Compile Update="SettingsViews\Bluetooth.xaml.cs">
+      <DependentUpon>Bluetooth.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

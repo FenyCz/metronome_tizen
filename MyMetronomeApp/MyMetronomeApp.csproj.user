@@ -16,6 +16,9 @@
     <EmbeddedResource Update="Metronome.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Update="SettingsViews\Bluetooth.xaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">

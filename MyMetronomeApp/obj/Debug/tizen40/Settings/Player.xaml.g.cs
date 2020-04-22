@@ -8,21 +8,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Settings.xaml", "Settings.xaml", typeof(global::MyMetronomeApp.Settings))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Settings.Player.xaml", "Settings/Player.xaml", typeof(global::MyMetronomeApp.Player))]
 
 namespace MyMetronomeApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Settings.xaml")]
-    public partial class Settings : global::Tizen.Wearable.CircularUI.Forms.CirclePage {
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Settings\\Player.xaml")]
+    public partial class Player : global::Tizen.Wearable.CircularUI.Forms.CirclePage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Tizen.Wearable.CircularUI.Forms.CircleListView SettingsList;
+        private global::Tizen.Wearable.CircularUI.Forms.CircleSliderSurfaceItem bpm;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Settings));
-            SettingsList = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Tizen.Wearable.CircularUI.Forms.CircleListView>(this, "SettingsList");
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Player));
+            bpm = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Tizen.Wearable.CircularUI.Forms.CircleSliderSurfaceItem>(this, "bpm");
         }
     }
 }

@@ -13,3 +13,4 @@ C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMe
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\XamlC.stamp
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.dll
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\MyMetronomeApp.pdb
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Debug\tizen40\SettingsViews\Bluetooth.xaml.g.cs

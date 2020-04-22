@@ -10,37 +10,32 @@ using Tizen.Wearable.CircularUI.Forms;
 using Tizen.Network.Bluetooth;
 using Tizen.Applications;
 using System.Runtime.CompilerServices;
+using MyMetronomeApp.BTHandler;
 
-namespace MyMetronomeApp
+namespace MyMetronomeApp.SettingsViews
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Player : CirclePage
+    public partial class Bluetooth : CirclePage
     {
-        //public static BluetoothLeDevice leDevice = null;
-        //public static BluetoothGattClient client = null;
-        //public static string remote_addr = "B8:27:EB:DC:D9:EC";
-        //static bool StateChanged_flag = false;
-
-        public static IBluetoothClientSocket Client;
-        public static IBluetoothServerSocket Server;
+        static BluetoothHandler bh;
+        /*public  IBluetoothClientSocket Client;
         public static BluetoothSocketState ClientState;
         public static SocketConnection ClientConnection;
-        public static BluetoothError ClientResult;
+        public static BluetoothError ClientResult;*/
 
-        static string service_uuid = "00001101-0000-1000-8000-00805F9B34FB";
-        public static bool FlagDeviceFound = false;
-        private bool flagCreateClientDone = false;
-        private bool flagConnect = false;
+        public static string service_uuid = "00001101-0000-1000-8000-00805F9B34FB";
 
-        public Player()
+        public Bluetooth(BluetoothHandler data)
         {
             InitializeComponent();
+            bh = data;
         }
 
         private async void Connect(object sender, EventArgs e)
         {
             try
             {
+                // pokud je BT vypnut
                 if (!BluetoothAdapter.IsBluetoothEnabled)
                 {
                     Toast.DisplayText("Please turn on Bluetooth.");
@@ -49,52 +44,56 @@ namespace MyMetronomeApp
                 else
                 {
 
-                    /// Discover the remote device
+                    // zacneme vyhledavat dostupna zarizeni
                     BluetoothAdapter.DiscoveryStateChanged += DiscoveryStateChangedEventHandler;
                     BluetoothAdapter.StartDiscovery();
                     await WaitDiscoveryFlag();
                     BluetoothAdapter.DiscoveryStateChanged -= DiscoveryStateChangedEventHandler;
                     
-                    if (FlagDeviceFound)
+                    if (bh.FlagDeviceFound)
                     {
-                        flagCreateClientDone = true;
+                        bh.flagCreateClientDone = true;
                     }
                     
-                    //if (flagCreateClientDone)
-                    //{
+                    // pokud jsme uspesne vytvorili clientsocket
+                    if (bh.flagCreateClientDone)
+                    {
+                        // vypneme vyhledavani, velmi narocne na zdroje hodinek
                         BluetoothAdapter.StopDiscovery();
 
-                        Client.ConnectionStateChanged += ConnectionStateChangedEventHandler;
-                        Client.Connect();
-                        
-                        flagConnect = true;
 
-                    //}
-                    /*else
+                        // pripojeni k zarizeni
+                        BluetoothHandler.Client.ConnectionStateChanged += ConnectionStateChangedEventHandler;
+                        BluetoothHandler.Client.Connect();
+                        BluetoothHandler.Client.DataReceived += DataReceivedServerEventHandler;
+                        //Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
+                        bh.flagConnect = true;
+
+                    }
+                    else
                     {
                         Toast.DisplayText("Connect error - Try to reconnect.");
-                    }*/
+                    }
 
                 }
             }
+
+            // pokud nedoslo k navazani BT spojeni vypise chybu
             catch (Exception ex)
             {
                 Toast.DisplayText("Error: " + ex.Message);
             }
         }
 
-
+        // funkce pro zaslani zpravy
         private void Send(object sender, EventArgs e)
         {
-            Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
-            Client.DataReceived += DataReceivedClientEventHandler;
-            Toast.DisplayText("Ready to receive data!");
-            /*try
+            try
             {
-                if (flagConnect)
+                if (bh.flagConnect)
                 {
                     string dataFromClient = "Message";
-                    Client.SendData(dataFromClient);
+                    BluetoothHandler.Client.SendData(dataFromClient);
                     Toast.DisplayText("Data sended...");
                 }
                 else
@@ -105,25 +104,29 @@ namespace MyMetronomeApp
             catch (Exception ex)
             {
                 Toast.DisplayText("Error: " + ex.Message);
-            }*/
+            }
         }
 
+        // funkce pro ukonceni BT spojeni
         private void Disconnect(object sender, EventArgs e)
         {
             try
             {
-                //if (flagConnect)
-               // {
-                    Client.DataReceived -= DataReceivedClientEventHandler;
-                    Client.Disconnect();
-                    flagCreateClientDone = false;
-                    flagConnect = false;
+                if (bh.flagConnect)
+                {
+                    BluetoothHandler.Client.Disconnect();
+                    
+                    //unregistr receivcer
+                    BluetoothHandler.Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
+                    BluetoothHandler.Client.DataReceived -= DataReceivedServerEventHandler;
+                    bh.flagCreateClientDone = false;
+                    bh.flagConnect = false;
                     Toast.DisplayText("Disconnected!");
-                /*}
+                }
                 else
                 {
                     Toast.DisplayText("You are not connected.");
-                }*/
+                }
             }
             catch (Exception ex)
             {
@@ -173,8 +176,8 @@ namespace MyMetronomeApp
             if (args.DiscoveryState == BluetoothDeviceDiscoveryState.Found)
             {
                 Toast.DisplayText("DiscoveryStateChanged callback device found: " + args.DeviceFound.Name);
-                Client = args.DeviceFound.CreateSocket(service_uuid);
-                FlagDeviceFound = true;
+                BluetoothHandler.Client = args.DeviceFound.CreateSocket(service_uuid);
+                bh.FlagDeviceFound = true;
             }
         }
 
@@ -185,7 +188,7 @@ namespace MyMetronomeApp
             {
                 await Task.Delay(2000);
                 count++;
-                if (FlagDeviceFound)
+                if (bh.FlagDeviceFound)
                 {
                     break;
                 }
@@ -199,17 +202,17 @@ namespace MyMetronomeApp
         public static void ConnectionStateChangedEventHandler(object sender, SocketConnectionStateChangedEventArgs args)
         {
             Toast.DisplayText("ConnectionStateChanged callback in client " + args.State);
-            ClientState = args.State;
-            ClientConnection = args.Connection;
-            ClientResult = args.Result;
+            BluetoothHandler.ClientState = args.State;
+            BluetoothHandler.ClientConnection = args.Connection;
+            BluetoothHandler.ClientResult = args.Result;
 
             if (args.State == BluetoothSocketState.Connected)
             {
                 Toast.DisplayText("Callback: Connected.");
-                if (ClientConnection != null)
+                if (BluetoothHandler.ClientConnection != null)
                 {
-                    Toast.DisplayText("Callback: Socket of connection: " + ClientConnection.SocketFd);
-                    Toast.DisplayText("Callback: Address of connection: " + ClientConnection.Address);
+                    Toast.DisplayText("Callback: Socket of connection: " + BluetoothHandler.ClientConnection.SocketFd);
+                    Toast.DisplayText("Callback: Address of connection: " + BluetoothHandler.ClientConnection.Address);
                 }
                 else
                 {
@@ -219,10 +222,10 @@ namespace MyMetronomeApp
             else
             {
                 Toast.DisplayText("Callback: Disconnected.");
-                if (ClientConnection != null)
+                if (BluetoothHandler.ClientConnection != null)
                 {
-                    Toast.DisplayText("Callback: Socket of disconnection: " + ClientConnection.SocketFd);
-                    Toast.DisplayText("Callback: Address of disconnection: " + ClientConnection.Address);
+                    Toast.DisplayText("Callback: Socket of disconnection: " + BluetoothHandler.ClientConnection.SocketFd);
+                    Toast.DisplayText("Callback: Address of disconnection: " + BluetoothHandler.ClientConnection.Address);
                 }
                 else
                 {
@@ -231,9 +234,8 @@ namespace MyMetronomeApp
             }
         }
 
-        private void DataReceivedClientEventHandler(object sender, SocketDataReceivedEventArgs args)
+        private void DataReceivedServerEventHandler(object sender, SocketDataReceivedEventArgs args)
         {
-
             //BluetoothSetup.Data = args.Data;
             //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
             Toast.DisplayText("DataReceived in client: " + args.Data.Data);

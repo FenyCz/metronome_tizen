@@ -11,5 +11,10 @@
             Name = name;
             IconPath = path;
         }
+
+        public MListItem(string name)
+        {
+            Name = name;
+        }
     }
 }

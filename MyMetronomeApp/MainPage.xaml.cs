@@ -10,13 +10,16 @@ using Tizen.Wearable.CircularUI.Forms;
 using MyMetronomeApp.Model;
 using MyMetronomeApp.ViewModel;
 using Tizen.Applications;
+using MyMetronomeApp.SettingsViews;
+using MyMetronomeApp.BTHandler;
 
 namespace MyMetronomeApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
-        MetronomeViewModel mViewModel = new MetronomeViewModel();
+        static MetronomeViewModel mViewModel = new MetronomeViewModel();
+        BluetoothHandler mHandler = new BluetoothHandler();
 
         public MainPage()
         {
@@ -48,7 +51,7 @@ namespace MyMetronomeApp
             }
             else if (item.Name.Equals("Settings"))
             {
-                Navigation.PushModalAsync(new Settings());
+                Navigation.PushModalAsync(new Settings(mHandler));
             }
         }
     }
