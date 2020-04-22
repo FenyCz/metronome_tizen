@@ -14,19 +14,12 @@
             <c:CircleListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <StackLayout
-                            Padding="30,10,30,10"
-                            HorizontalOptions="FillAndExpand"
-                            Orientation="Horizontal"
-                            VerticalOptions="Center">
-                            <Label
-                                HeightRequest="50"
-                                HorizontalOptions="Center"
-                                HorizontalTextAlignment="Center"
-                                Text="{Binding Name}"
-                                VerticalOptions="Center"
-                                VerticalTextAlignment="Center" />
-                        </StackLayout>
+                        <Label
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="{Binding Name}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
                     </ViewCell>
                 </DataTemplate>
             </c:CircleListView.ItemTemplate>

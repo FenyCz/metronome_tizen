@@ -17,12 +17,12 @@ namespace MyMetronomeApp.SettingsViews {
     public partial class Bluetooth : global::Tizen.Wearable.CircularUI.Forms.CirclePage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
-        private global::Tizen.Wearable.CircularUI.Forms.CircleSliderSurfaceItem bpm;
+        private global::Tizen.Wearable.CircularUI.Forms.CircleListView BTList;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
             global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(Bluetooth));
-            bpm = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Tizen.Wearable.CircularUI.Forms.CircleSliderSurfaceItem>(this, "bpm");
+            BTList = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::Tizen.Wearable.CircularUI.Forms.CircleListView>(this, "BTList");
         }
     }
 }

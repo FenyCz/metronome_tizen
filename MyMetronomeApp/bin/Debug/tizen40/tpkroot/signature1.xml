@@ -60,15 +60,15 @@
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.pdb">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>clqWkq6IVIeAw+bkv7CHiiZt/QoW8lVtBSg3g6swKP0=</DigestValue>
+      <DigestValue>mCcreWVIE7JZ312fPnJC3ghTVXDqJfUOU+jl/S7bK4Y=</DigestValue>
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>T9LuxngUw25xjnXQ4CO98VSiJpFmt6/OpIovzGkLPWk=</DigestValue>
+      <DigestValue>BGHx6EpQc8ZTwpPZx7KIt55NQ4dSwlGpWbjVsUy1U8k=</DigestValue>
     </Reference>
     <Reference URI="author-signature.xml">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>JHqeFHnfh2eJToD4r8Yu0z9LJjr28xJMqRXc6Lpc6kU=</DigestValue>
+      <DigestValue>E/kfW2v/5XirJXG5CtRoq78TDXhU3XCjmjUu8ghLK7o=</DigestValue>
     </Reference>
     <Reference URI="#prop">
       <Transforms>
@@ -79,11 +79,11 @@
     </Reference>
   </SignedInfo>
   <SignatureValue>
-Kz6pj27UaN672wUEHdwHQAqOl1/ANyBhtGAOcB61uAeK1L/OeiE0KFcqlAyD1C2WTxX9sgAWy/wC
-gz1TPTyMbAaze1ZOUKVZe2zNJqhodYKhqNuKfxr5+F1FF8DOqiOWtlP8VBX5PfiMFL19kdsOXxzL
-aHnMDe78sY35JPw2EEngjZ+/tNEC0AROWz3AkNUTeTN+9TTul65AKFf5vYPSvBAYHHnYbliiTxHE
-eosGtKfQsmcX14bGjj56/8SfnMancwOI7oqHF+0tqV1qysSij2T3YFSh0LuoH22L3VoM3M4s0I/P
-+BJv/AGgvlYTaufHwQAN1J9EJ8Wp/bCDMrs0HQ==
+hyncOdzOHV1aCfiLHQ+MTso6xkFnvFtcnjOAcIxzlUZncjQDka/8AUmMqzY/PITzfOMJnu9v0brx
+MUpsKfipPPT1/m4jRz+rUJqsoloT/u31orjhJZ6dTmjtO/UBgilVSfkd151+bldxF5aKxTdfUf0b
+aJ452Ey4GugtMtR+1LUm8ZjkUVNtOckuTuIEuMuuIaN35TQS4hVBiHEmXwQPwUYEX818UQ3MxIr+
+qTJgBADq4EcC5H9yoqCzYahJ1RjTRenZBr7xqiCD9KAouZs3EI708kAfMo8lgkRKMCA049QX1Ra0
+QBx2o7RbRV42wyPiG9vfXmix+xRSBFwpW9QBJg==
 </SignatureValue>
   <KeyInfo>
     <X509Data>
