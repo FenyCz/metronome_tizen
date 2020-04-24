@@ -16,39 +16,26 @@ namespace MyMetronomeApp.PlayerViews
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChoosePlaylist : CirclePage
     {
-        private MetronomeViewModel mViewModel;
+        private PlayerViewModel pViewModel;
 
-        public ChoosePlaylist(MetronomeViewModel data)
+        public ChoosePlaylist(PlayerViewModel data)
         {
-            mViewModel = data;
-            BindingContext = mViewModel;
+            pViewModel = data;
+            BindingContext = pViewModel;
             InitializeComponent();
-            PlaylistListView();
-        }
-        private void PlaylistListView()
-        {
-            List<MListItem> pListItems = new List<MListItem>
-            {
-                new MListItem("Majvely"),
-            };
-            PlaylistList.ItemsSource = pListItems;
+            PlaylistList.ItemsSource = pViewModel.pListItems;
         }
 
         private void ItemTapped(object sender, ItemTappedEventArgs e)
         {
             MListItem item = (MListItem)e.Item;
-            if (item.Name.Equals("Majvely"))
+            for (int i = 0; i < pViewModel.pListItems.Count(); i++)
             {
-                Navigation.PushModalAsync(new Player(mViewModel));
+                if (item.Name.Equals(pViewModel.pListItems[i].Name))
+                {
+                    Navigation.PushModalAsync(new Player(pViewModel, pViewModel.pListItems[i]));
+                }
             }
-            /*else if (item.Name.Equals("Player"))
-            {
-                Navigation.PushModalAsync(new Player());
-            }
-            else if (item.Name.Equals("Settings"))
-            {
-                //Navigation.PushModalAsync(new Settings());
-            }*/
         }
     }
 }

@@ -16,18 +16,9 @@ namespace MyMetronomeApp.ViewModel
     {
         public int currentValue = 120;
         public double currentInterval;
-        //MetronomeModel mModel = new MetronomeModel();
         public Timer timer = new Timer();
         public bool isPlaying = false;
-        Vibrator vibrator = Vibrator.Vibrators[0];
-
-        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_power_request_lock", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int DevicePowerRequestLock(int type, int timeout_ms);
-
-        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
-        internal static extern int DevicePowerReleaseLock(int type);
-
-        enum Power_Type { CPU = 0, DISPLAY = 1, DISPLAY_DIM = 2 };
+        readonly Vibrator vibrator = Vibrator.Vibrators[0];
 
         public int CurrentValue
         {

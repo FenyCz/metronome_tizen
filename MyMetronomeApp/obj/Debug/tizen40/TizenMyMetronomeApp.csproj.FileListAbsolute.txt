@@ -1,5 +1,10 @@
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\MyMetronomeApp.dll
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\MyMetronomeApp.pdb
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\SQLite-net.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\SQLitePCLRaw.batteries_green.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\SQLitePCLRaw.batteries_v2.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\SQLitePCLRaw.core.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\SQLitePCLRaw.provider.sqlite3.dll
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Tizen.Wearable.CircularUI.Forms.Renderer.dll
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Tizen.Wearable.CircularUI.Forms.dll
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\bin\Xamarin.Forms.Core.dll

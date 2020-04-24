@@ -19,12 +19,14 @@ namespace MyMetronomeApp
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
-        static MetronomeViewModel mViewModel = new MetronomeViewModel();
+        MetronomeViewModel mViewModel = new MetronomeViewModel();
         BluetoothHandler mHandler = new BluetoothHandler();
+        PlayerViewModel pViewModel;
 
         public MainPage()
         {
             InitializeComponent();
+            pViewModel = new PlayerViewModel();
             MakeMainListView();
         }
         private void MakeMainListView()
@@ -48,7 +50,7 @@ namespace MyMetronomeApp
             }
             else if (item.Name.Equals("Player"))
             {
-                Navigation.PushModalAsync(new ChoosePlaylist(mViewModel));
+                Navigation.PushModalAsync(new ChoosePlaylist(pViewModel));
             }
             else if (item.Name.Equals("Settings"))
             {

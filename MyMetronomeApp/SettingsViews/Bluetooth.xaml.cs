@@ -54,7 +54,7 @@ namespace MyMetronomeApp.SettingsViews
             bh.bListItems.Clear();
         }
 
-        // stisknuti tlacitka discover, zacne vyhledavat viditelna zarizeni BTs
+        // stisknuti tlacitka discover, zacne vyhledavat viditelna zarizeni BT
         private async void Discover(object sender, EventArgs e)
         {
             try
@@ -62,7 +62,7 @@ namespace MyMetronomeApp.SettingsViews
                 // pokud je BT vypnut
                 if (!BluetoothAdapter.IsBluetoothEnabled)
                 {
-                    Toast.DisplayText("Please turn on Bluetooth.");
+                    Toast.DisplayText("Please turn on Bluetooth.", 2000);
                 }
 
                 else
@@ -70,16 +70,15 @@ namespace MyMetronomeApp.SettingsViews
                     BTList.ItemsSource = null;
                     bh.bListItems.Clear();
 
+                    Toast.DisplayText("Discovering...", 2000);
+
                     // zacneme vyhledavat dostupna zarizeni
                     BluetoothAdapter.DiscoveryStateChanged += DiscoveryStateChangedEventHandler;
                     BluetoothAdapter.StartDiscovery();
-
-                    Toast.DisplayText("Discovering...");
-                    
                     await WaitDiscoveryFlag();
                     BluetoothAdapter.DiscoveryStateChanged -= DiscoveryStateChangedEventHandler;
 
-                    // pokud nalezneme ukoncime vyhledavani, vyhledavani je narocne na zdroje BT
+                    // pokud nalezneme, ukoncime vyhledavani, vyhledavani je narocne na zdroje BT
                     if (bh.flagDeviceFound)
                     {
                         BluetoothAdapter.StopDiscovery();
@@ -88,7 +87,7 @@ namespace MyMetronomeApp.SettingsViews
 
                     else
                     {
-                        Toast.DisplayText("No founded BT devices");
+                        Toast.DisplayText("No founded BT devices", 2000);
                     }
                 }
             }
@@ -96,7 +95,7 @@ namespace MyMetronomeApp.SettingsViews
             // pokud nedoslo k navazani BT spojeni vypise chybu
             catch (Exception ex)
             {
-                Toast.DisplayText("DiscoverError: " + ex.Message);
+                Toast.DisplayText("DiscoverError: " + ex.Message, 2000);
             }
         }
 
@@ -113,7 +112,7 @@ namespace MyMetronomeApp.SettingsViews
             }
             catch (Exception ex)
             {
-                Toast.DisplayText("CreateSocketError: " + ex.Message);
+                Toast.DisplayText("CreateSocketError: " + ex.Message, 2000);
             }
 
             // pokud jsme uspesne vytvorili clientsocket
@@ -127,12 +126,12 @@ namespace MyMetronomeApp.SettingsViews
                 }
                 catch (Exception ex)
                 {
-                    Toast.DisplayText("CreateSocketError: " + ex.Message);
+                    Toast.DisplayText("CreateSocketError: " + ex.Message, 2000);
                 }
             }
             else
             {
-                Toast.DisplayText("SocketError: Socket isn't created.");
+                Toast.DisplayText("SocketError: Socket isn't created.", 2000);
             }
         }
 
@@ -148,7 +147,7 @@ namespace MyMetronomeApp.SettingsViews
                     // bluetooth musi byt zapnuty
                     if (!BluetoothAdapter.IsBluetoothEnabled)
                     {
-                        Toast.DisplayText("Please turn on Bluetooth.");
+                        Toast.DisplayText("Please turn on Bluetooth.", 2000);
                     }
                     else
                     {
@@ -202,11 +201,11 @@ namespace MyMetronomeApp.SettingsViews
                     // nastaveni barev a informace pro uzivatele o odpojeni
                     SetDisconnected();
 
-                    Toast.DisplayText("Disconnected!");
+                    Toast.DisplayText("Disconnected!", 2000);
                 }
                 else
                 {
-                    Toast.DisplayText("You are not connected.");
+                    Toast.DisplayText("You are not connected.", 2000);
                 }
             }
             catch (Exception ex)
@@ -247,7 +246,6 @@ namespace MyMetronomeApp.SettingsViews
                     // pokud je spojeni navazano na spravny socket
                     if(BluetoothHandler.ClientConnection.SocketFd != -1)
                     {
-                        Toast.DisplayText("Connected!");
 
                         SetConnected();
 
@@ -255,19 +253,19 @@ namespace MyMetronomeApp.SettingsViews
                     }
                     else 
                     {
-                        Toast.DisplayText("SeverError: Prepare your mobile and reconnect!");
+                        Toast.DisplayText("SeverError: Prepare your mobile and reconnect!", 2000);
                     }
                 }
                 else
                 {
-                    Toast.DisplayText("Callback: No connection data");
+                    Toast.DisplayText("Callback: No connection data", 2000);
                 }
             }
             
             // pokud dojde k preruseni socketu, zarizeni je odpojeno
             else
             {
-                Toast.DisplayText("Callback: Disconnected!");
+                Toast.DisplayText("Callback: Disconnected!", 2000);
 
                 SetDisconnected();
 
@@ -286,7 +284,7 @@ namespace MyMetronomeApp.SettingsViews
         {
             //BluetoothSetup.Data = args.Data;
             //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
-            Toast.DisplayText("DataReceived in client: " + args.Data.Data);
+            Toast.DisplayText("DataReceived in client: " + args.Data.Data, 2000);
             //flagServerDataReceived = true;
         }
 

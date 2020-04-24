@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Settings.xaml", "Settings.xaml", typeof(global::MyMetronomeApp.Settings))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Views.Settings.xaml", "Views/Settings.xaml", typeof(global::MyMetronomeApp.Settings))]
 
 namespace MyMetronomeApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Settings.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\Settings.xaml")]
     public partial class Settings : global::Tizen.Wearable.CircularUI.Forms.CirclePage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

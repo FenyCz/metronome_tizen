@@ -8,12 +8,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Player.xaml", "Player.xaml", typeof(global::MyMetronomeApp.Player))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("MyMetronomeApp.Views.Player.xaml", "Views/Player.xaml", typeof(global::MyMetronomeApp.Player))]
 
 namespace MyMetronomeApp {
     
     
-    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Player.xaml")]
+    [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\Player.xaml")]
     public partial class Player : global::Tizen.Wearable.CircularUI.Forms.CirclePage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]

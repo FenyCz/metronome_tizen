@@ -44,7 +44,7 @@
     </Reference>
     <Reference URI="MyMetronomeApp.deps.json">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>Cgt6wAKOtDoXe8lFDu7eRK5XNssPlOZpLOUChUJ1lYA=</DigestValue>
+      <DigestValue>vojkn3XbtzHrNfIdYPq6cHoLgi/OoImO2vYdlLKm09I=</DigestValue>
     </Reference>
     <Reference URI="bin%2FXamarin.Forms.Xaml.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
@@ -64,19 +64,39 @@
     </Reference>
     <Reference URI="bin%2FTizen.Wearable.CircularUI.Forms.Renderer.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>+/2CG7ERpqgq/UPjY69bQHUaKrkSU2rTQop7MBUZFLw=</DigestValue>
+      <DigestValue>S4e/J6GXP1BkzmLaZ7ieF2sLDYe8n9mjmykBJE5fpJg=</DigestValue>
     </Reference>
     <Reference URI="bin%2FTizen.Wearable.CircularUI.Forms.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>DP+KeR4/ehVvMC9pjVyyF91uTuL+UzU0CstWbBqafcU=</DigestValue>
+      <DigestValue>k3ssr/YwwzLRBKYRdMEhMiQ/Z3sv60RdmfnvvuLdZaY=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FSQLitePCLRaw.provider.sqlite3.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+      <DigestValue>3OJcUEtLBh8P+Un4fzT/aVncKNhBwfTjETRnAZ/UBdQ=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FSQLitePCLRaw.core.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+      <DigestValue>XNM8OO1wyATh+Qr5ITJgaFe0Xf4JbuV59mmOYpD71/A=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FSQLitePCLRaw.batteries_v2.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+      <DigestValue>uui/QpKQ+R4tlhZ3ruwneF30tGJwoavurt7jKE0wuNg=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FSQLitePCLRaw.batteries_green.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+      <DigestValue>ebSHPFEMco7GKbR/4/flXFHdLps2m7u9/Z+TFnKu3os=</DigestValue>
+    </Reference>
+    <Reference URI="bin%2FSQLite-net.dll">
+      <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
+      <DigestValue>cs9eyDGAFCEe0m0pS3X+HKJXfMmr/8Xx4XpmL+0nT1A=</DigestValue>
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.pdb">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>5JEr1+OxwiD44wijof6AkpTFqizCdYL13KxUno6fp4A=</DigestValue>
+      <DigestValue>ZIaIeKqK8Uc7wL9jlZtylGU16GQsfXmECkF3j6QAIEY=</DigestValue>
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>1eH7bFm2nC5/rAYG0ZeoJMH+17lbufDCJlntPP6O+3A=</DigestValue>
+      <DigestValue>UmMXKEU6IRsLznll4g9m7RuVF7ooWpViBStjoHFEKxc=</DigestValue>
     </Reference>
     <Reference URI="#prop">
       <Transforms>
@@ -87,11 +107,11 @@
     </Reference>
   </SignedInfo>
   <SignatureValue>
-KwEIB28K42m5ICjhbu7xStg0hoQ/eGJDvEEIz72JXLbCBdQZg9+7o1z/5I5881Xgv1+TANMmDR5W
-y5OBuRb4J7y9bzu2Evy9kFJ6Bd166KcMNyoF75NWSBmb1LGGnbXPBG5d9dDMY4QQ3tXXJ83vxUnQ
-JW4Cw4SF/qYNBtONzlirolPcOTypC+lAcMAIgdpJexlwVLI9NeyruTi7ehnJUPMmcGls6nKTo8Md
-UFFCMkeWz+7QaPxW5xJk9RzCeIIc8WCLeYvikn70WgNtdFgUf9Khws4p/tiOimFXeUCD6QvpH28O
-Tpq6mfRWvcYbq8pKXwGMyPtZlBZqKCcGR00iyw==
+Vfv2aKWghkj+n/ARj6wNQRGXy5TEc/SrRs+EgfQwW+clcDD/LBu/O9sYP+yH6GRuhoI1RlnxU6Yy
+q0wAEF2IK4/I6UnB/fDJBaGceSpMsIvoiuuPgj79lZG4PPw2hdzWnqGUSR19VBAL6kXw3egXlgRZ
+Qqy3T00XBREhNHOzn6z5bgbg3m+jjAUerYAzPOq8RFLTYI/s5zDDAj4GPqQkjIbxomGDSVFGK3cc
+JtybfN37Mpkl68bX50Az65KCqw1iH97FvgbpgYhUzN0bKwP17Sdj2oskCXVYE5TKph8ADfBRkGHq
+liOM+5wOX+ITJt8LjueHSRyfGJ7VKEcyn0iEKA==
 </SignatureValue>
   <KeyInfo>
     <X509Data>

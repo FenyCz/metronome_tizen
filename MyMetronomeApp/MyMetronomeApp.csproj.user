@@ -10,13 +10,13 @@
     <EmbeddedResource Update="PlayerViews\ChoosePlaylist.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Settings.xaml">
+    <EmbeddedResource Update="Views\Settings.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Player.xaml">
+    <EmbeddedResource Update="Views\Player.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Update="Metronome.xaml">
+    <EmbeddedResource Update="Views\Metronome.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Update="SettingsViews\Bluetooth.xaml">
@@ -25,9 +25,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Update="App.xaml">
-      <SubType>Designer</SubType>
-    </None>
-    <None Update="MainPage.xaml">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
