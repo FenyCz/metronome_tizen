@@ -8,14 +8,12 @@
     BackgroundColor="#002554"
     NavigationPage.HasNavigationBar="False"
     RotaryFocusObject="{x:Reference bpm}">
-
     <c:CirclePage.Content>
         <StackLayout
-            HeightRequest="180"
+            Padding="30,20,30,20"
             HorizontalOptions="Center"
             Orientation="Vertical"
-            VerticalOptions="Center"
-            WidthRequest="180">
+            VerticalOptions="Center">
             <Label
                 x:Name="label"
                 BindingContext="{x:Reference Name=bpm}"
@@ -31,9 +29,9 @@
                     BackgroundColor="#E65100"
                     Clicked="OnClick"
                     Command="{Binding StartMetronome}"
-                    HeightRequest="80"
+                    HeightRequest="90"
                     ImageSource="images/play.png"
-                    WidthRequest="80" />
+                    WidthRequest="90" />
             </StackLayout>
         </StackLayout>
     </c:CirclePage.Content>

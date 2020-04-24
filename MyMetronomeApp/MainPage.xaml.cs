@@ -12,6 +12,7 @@ using MyMetronomeApp.ViewModel;
 using Tizen.Applications;
 using MyMetronomeApp.SettingsViews;
 using MyMetronomeApp.BTHandler;
+using MyMetronomeApp.PlayerViews;
 
 namespace MyMetronomeApp
 {
@@ -47,7 +48,7 @@ namespace MyMetronomeApp
             }
             else if (item.Name.Equals("Player"))
             {
-                Navigation.PushModalAsync(new Player());
+                Navigation.PushModalAsync(new ChoosePlaylist(mViewModel));
             }
             else if (item.Name.Equals("Settings"))
             {

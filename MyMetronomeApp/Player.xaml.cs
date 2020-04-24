@@ -10,265 +10,86 @@ using Tizen.Wearable.CircularUI.Forms;
 using Tizen.Network.Bluetooth;
 using Tizen.Applications;
 using System.Runtime.CompilerServices;
+using MyMetronomeApp.ViewModel;
 
 namespace MyMetronomeApp
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Player : CirclePage
+    public partial class Player : CirclePage, IRotaryEventReceiver
     {
-        //public static BluetoothLeDevice leDevice = null;
-        //public static BluetoothGattClient client = null;
-        //public static string remote_addr = "B8:27:EB:DC:D9:EC";
-        //static bool StateChanged_flag = false;
+        MetronomeViewModel mViewModel;
+        private Button btn;
+        private bool btnPlay = true;
+        List<SongItem> pListItems = new List<SongItem>();
 
-        public static IBluetoothClientSocket Client;
-        public static IBluetoothServerSocket Server;
-        public static BluetoothSocketState ClientState;
-        public static SocketConnection ClientConnection;
-        public static BluetoothError ClientResult;
+        bool _rotating;
+        int _angle;
 
-        static string service_uuid = "00001101-0000-1000-8000-00805F9B34FB";
-        public static bool FlagDeviceFound = false;
-        private bool flagCreateClientDone = false;
-        private bool flagConnect = false;
-
-        public Player()
+        public Player(MetronomeViewModel data)
         {
             InitializeComponent();
+            SongsListView();
+            mViewModel = data;
+            BindingContext = mViewModel;
+            _angle = 0;
+
+            tempo.Text = pListItems[0].Tempo.ToString();
+            songName.Text = pListItems[0].Name;
         }
 
-        private async void Connect(object sender, EventArgs e)
+        private void SongsListView()
         {
-            try
-            {
-                if (!BluetoothAdapter.IsBluetoothEnabled)
-                {
-                    Toast.DisplayText("Please turn on Bluetooth.");
-                }
-
-                else
-                {
-
-                    /// Discover the remote device
-                    BluetoothAdapter.DiscoveryStateChanged += DiscoveryStateChangedEventHandler;
-                    BluetoothAdapter.StartDiscovery();
-                    await WaitDiscoveryFlag();
-                    BluetoothAdapter.DiscoveryStateChanged -= DiscoveryStateChangedEventHandler;
-                    
-                    if (FlagDeviceFound)
-                    {
-                        flagCreateClientDone = true;
-                    }
-                    
-                    //if (flagCreateClientDone)
-                    //{
-                        BluetoothAdapter.StopDiscovery();
-
-                        Client.ConnectionStateChanged += ConnectionStateChangedEventHandler;
-                        Client.Connect();
-                        
-                        flagConnect = true;
-
-                    //}
-                    /*else
-                    {
-                        Toast.DisplayText("Connect error - Try to reconnect.");
-                    }*/
-
-                }
-            }
-            catch (Exception ex)
-            {
-                Toast.DisplayText("Error: " + ex.Message);
-            }
+            pListItems.Add(new SongItem("Naděje svítá nám", 145));
+            pListItems.Add(new SongItem("Florentská romance", 140));
         }
 
-
-        private void Send(object sender, EventArgs e)
+        private void OnClick(object sender, EventArgs e)
         {
-            Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
-            Client.DataReceived += DataReceivedClientEventHandler;
-            Toast.DisplayText("Ready to receive data!");
-            /*try
+            btn = sender as Button;
+
+            if (btnPlay)
             {
-                if (flagConnect)
-                {
-                    string dataFromClient = "Message";
-                    Client.SendData(dataFromClient);
-                    Toast.DisplayText("Data sended...");
-                }
-                else
-                {
-                    Toast.DisplayText("Connect first.");
-                }
+                btn.ImageSource = "images/stop.png";
+                btnPlay = false;
             }
-            catch (Exception ex)
-            {
-                Toast.DisplayText("Error: " + ex.Message);
-            }*/
-        }
 
-        private void Disconnect(object sender, EventArgs e)
-        {
-            try
-            {
-                //if (flagConnect)
-               // {
-                    Client.DataReceived -= DataReceivedClientEventHandler;
-                    Client.Disconnect();
-                    flagCreateClientDone = false;
-                    flagConnect = false;
-                    Toast.DisplayText("Disconnected!");
-                /*}
-                else
-                {
-                    Toast.DisplayText("You are not connected.");
-                }*/
-            }
-            catch (Exception ex)
-            {
-                Toast.DisplayText("Error: " + ex.Message);
-            }
-        }
-
-                /*try
-                {
-                    if (!BluetoothAdapter.IsBluetoothEnabled)
-                    {
-                        Toast.DisplayText("Please turn on Bluetooth.");
-                    }
-                    else
-                    {
-
-                        /// For more information on scanning for BLE devices, see Managing Bluetooth LE Scans
-                        BluetoothAdapter.ScanResultChanged += scanResultEventHandler;
-                        if (leDevice == null)
-                        {
-                            BluetoothAdapter.StartLeScan();
-                            /// Wait while the system searches for the LE target you want to connect to
-                            /// If you find the LE target you want, stop the scan
-                            await WaitScanFlag();
-
-                            BluetoothAdapter.StopLeScan();
-                            await Task.Delay(5000);
-                        }
-
-                        else
-                        {
-                            Toast.DisplayText("Lets get connected.");
-                            //client = BluetoothGattClient.CreateClient(leDevice.RemoteAddress);
-                            leDevice.GattConnectionStateChanged += GattClient_ConnectionStateChanged;
-                            //await client.ConnectAsync(false);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Toast.DisplayText("Error: " + ex.Message);
-                }*/
-
-        public static void DiscoveryStateChangedEventHandler(object sender, DiscoveryStateChangedEventArgs args)
-        {
-            Toast.DisplayText("DiscoveryStateChanged callback " + args.DiscoveryState);
-            if (args.DiscoveryState == BluetoothDeviceDiscoveryState.Found)
-            {
-                Toast.DisplayText("DiscoveryStateChanged callback device found: " + args.DeviceFound.Name);
-                Client = args.DeviceFound.CreateSocket(service_uuid);
-                FlagDeviceFound = true;
-            }
-        }
-
-        public static async Task WaitDiscoveryFlag()
-        {
-            int count = 0;
-            while (true)
-            {
-                await Task.Delay(2000);
-                count++;
-                if (FlagDeviceFound)
-                {
-                    break;
-                }
-                if (count == 15)
-                {
-                    break;
-                }
-            }
-        }
-
-        public static void ConnectionStateChangedEventHandler(object sender, SocketConnectionStateChangedEventArgs args)
-        {
-            Toast.DisplayText("ConnectionStateChanged callback in client " + args.State);
-            ClientState = args.State;
-            ClientConnection = args.Connection;
-            ClientResult = args.Result;
-
-            if (args.State == BluetoothSocketState.Connected)
-            {
-                Toast.DisplayText("Callback: Connected.");
-                if (ClientConnection != null)
-                {
-                    Toast.DisplayText("Callback: Socket of connection: " + ClientConnection.SocketFd);
-                    Toast.DisplayText("Callback: Address of connection: " + ClientConnection.Address);
-                }
-                else
-                {
-                    Toast.DisplayText("Callback: No connection data");
-                }
-            }
             else
             {
-                Toast.DisplayText("Callback: Disconnected.");
-                if (ClientConnection != null)
-                {
-                    Toast.DisplayText("Callback: Socket of disconnection: " + ClientConnection.SocketFd);
-                    Toast.DisplayText("Callback: Address of disconnection: " + ClientConnection.Address);
-                }
-                else
-                {
-                    Toast.DisplayText("Callback: No connection data");
-                }
+                btn.ImageSource = "images/play.png";
+                btnPlay = true;
             }
         }
 
-        private void DataReceivedClientEventHandler(object sender, SocketDataReceivedEventArgs args)
+        protected override bool OnBackButtonPressed()
         {
+            mViewModel.timer.Enabled = false;
+            mViewModel.isPlaying = false;
 
-            //BluetoothSetup.Data = args.Data;
-            //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
-            Toast.DisplayText("DataReceived in client: " + args.Data.Data);
-            //flagServerDataReceived = true;
+            return base.OnBackButtonPressed();
         }
 
-        /*public async Task WaitScanFlag()
+        public void Rotate(RotaryEventArgs args)
         {
-            await Task.Delay(10000);
-        }*/
+            if (_rotating) return;
 
-        /*private void scanResultEventHandler(object sender, AdapterLeScanResultChangedEventArgs e)
-        {
-            // Found new device in your area.
-            Toast.DisplayText("Lets get connected 2.");
+            _rotating = true;
+
+            _angle += args.IsClockwise ? 1 : -1;
+
+            if(_angle < 1)
+            {
+                _angle = 0;
+            }
+
+            if(_angle >= pListItems.Count())
+            {
+                _angle = pListItems.Count() - 1; 
+            }
+            tempo.Text = pListItems[_angle].Tempo.ToString();
+            songName.Text = pListItems[_angle].Name;
+
+            _rotating = false;
+           
         }
-
-        public static void GattClient_ConnectionStateChanged(object sender, GattConnectionStateChangedEventArgs e)
-        {
-            if (e.Result != (int)BluetoothError.None)
-            {
-                StateChanged_flag = false;
-            }
-            else if (!e.RemoteAddress.Equals(remote_addr))
-            {
-                StateChanged_flag = false;
-            }
-            else if (e.IsConnected.Equals(false))
-            {
-                StateChanged_flag = false;
-            }
-            else
-            {
-                StateChanged_flag = true;
-            }
-        }*/
     }
 }

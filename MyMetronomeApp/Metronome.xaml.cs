@@ -29,7 +29,7 @@ namespace MyMetronomeApp
 
         private void OnClick(object sender, EventArgs e)
         {
-             btn = sender as Button;
+            btn = sender as Button;
 
             if (btnPlay)
             {

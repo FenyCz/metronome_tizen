@@ -14,7 +14,7 @@ namespace MyMetronomeApp.BTHandler
         public static SocketConnection ClientConnection;
         public static BluetoothError ClientResult;
 
-        public bool FlagDeviceFound = false;
+        public bool flagDeviceFound = false;
         public bool flagCreateClientDone = false;
         public bool flagConnect = false;
 

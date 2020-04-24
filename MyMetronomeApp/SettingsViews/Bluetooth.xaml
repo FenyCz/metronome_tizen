@@ -9,6 +9,7 @@
     <c:CirclePage.Content>
         <StackLayout>
             <Button
+                x:Name="discover"
                 BackgroundColor="#E65100"
                 Clicked="Discover"
                 HeightRequest="80"
@@ -35,6 +36,7 @@
                 </c:CircleListView.ItemTemplate>
             </c:CircleListView>
             <Button
+                x:Name="disconnect"
                 BackgroundColor="#E65100"
                 Clicked="Disconnect"
                 HeightRequest="80"

@@ -4,36 +4,65 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:c="clr-namespace:Tizen.Wearable.CircularUI.Forms;assembly=Tizen.Wearable.CircularUI.Forms"
+    x:Name="Play"
+    BackgroundColor="#002554"
     NavigationPage.HasNavigationBar="False"
-    RotaryFocusObject="{x:Reference bpm}">
+    RotaryFocusObject="{x:Reference Play}">
+
     <c:CirclePage.Content>
-        <StackLayout>
-            <Button
-                BackgroundColor="#E65100"
-                Clicked="Send"
-                HeightRequest="80"
-                Text="Send"
-                WidthRequest="80" />
-            <Button
-                BackgroundColor="#E65100"
-                Clicked="Connect"
-                HeightRequest="80"
-                Text="Connect"
-                WidthRequest="80" />
-            <Button
-                BackgroundColor="#E65100"
-                Clicked="Disconnect"
-                HeightRequest="80"
-                Text="Disconnect"
-                WidthRequest="80" />
+        <StackLayout
+            Padding="50,60,50,50"
+            BackgroundColor="Green"
+            HorizontalOptions="Center"
+            Orientation="Vertical"
+            VerticalOptions="Start">
+            <Label
+                x:Name="tempo"
+                FontSize="15"
+                HorizontalTextAlignment="Center"
+                Text="120"
+                VerticalTextAlignment="Center" />
+            <StackLayout
+                Padding="0,0,0,0"
+                BackgroundColor="Yellow"
+                HorizontalOptions="FillAndExpand"
+                Orientation="Vertical"
+                VerticalOptions="FillAndExpand">
+                <Button
+                    Margin="75,0,75,20"
+                    BackgroundColor="#E65100"
+                    Clicked="OnClick"
+                    HeightRequest="90"
+                    ImageSource="images/play.png"
+                    WidthRequest="90" />
+                <Label
+                    x:Name="songName"
+                    BackgroundColor="Red"
+                    FontSize="7"
+                    HorizontalTextAlignment="Center"
+                    Text="Naděje svítá nám "
+                    VerticalTextAlignment="Center" />
+
+            </StackLayout>
         </StackLayout>
+
     </c:CirclePage.Content>
     <c:CirclePage.CircleSurfaceItems>
         <c:CircleSliderSurfaceItem
             x:Name="bpm"
+            BackgroundAngle="340"
+            BackgroundAngleOffset="190"
+            BackgroundColor="#ff833a"
+            BackgroundLineWidth="2"
+            BackgroundRadius="170"
+            BarAngleMaximum="350"
+            BarAngleMinimum="10"
+            BarAngleOffset="180"
+            BarColor="#E65100"
+            BarLineWidth="15"
             Increment="1"
             Maximum="300"
             Minimum="1"
-            Value="120" />
+            Value="300" />
     </c:CirclePage.CircleSurfaceItems>
 </c:CirclePage>

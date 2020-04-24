@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Timers;
@@ -10,6 +11,7 @@ using Xamarin.Forms;
 
 namespace MyMetronomeApp.ViewModel
 {
+
     public class MetronomeViewModel : ViewModelBase
     {
         public int currentValue = 120;
@@ -18,6 +20,14 @@ namespace MyMetronomeApp.ViewModel
         public Timer timer = new Timer();
         public bool isPlaying = false;
         Vibrator vibrator = Vibrator.Vibrators[0];
+
+        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_power_request_lock", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerRequestLock(int type, int timeout_ms);
+
+        [DllImport("libcapi-system-device.so.0", EntryPoint = "device_power_release_lock", CallingConvention = CallingConvention.Cdecl)]
+        internal static extern int DevicePowerReleaseLock(int type);
+
+        enum Power_Type { CPU = 0, DISPLAY = 1, DISPLAY_DIM = 2 };
 
         public int CurrentValue
         {
@@ -63,6 +73,7 @@ namespace MyMetronomeApp.ViewModel
             if (!isPlaying)
             {
                 isPlaying = true;
+                //DevicePowerRequestLock((int)Power_Type.CPU, 0);
                 currentInterval = 59000 / currentValue;
                 timer.AutoReset = false;
                 timer.Interval = currentInterval;

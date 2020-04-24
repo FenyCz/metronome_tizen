@@ -25,8 +25,36 @@ namespace MyMetronomeApp.SettingsViews
         {
             InitializeComponent();
             bh = data;
+
+            // pokud je spojeni navazano, tak informuje - connected
+            if (bh.flagConnect)
+            {
+                SetConnected();
+            }
         }
 
+        // nastaveni barev a listviewu pro stav - connected
+        public void SetConnected()
+        {
+            discover.BackgroundColor = Color.FromHex("#008000");
+            disconnect.BackgroundColor = Color.FromHex("#008000");
+
+            BTList.ItemsSource = null;
+            bh.bListItems.Clear();
+            bh.bListItems.Add(new MListItem("Connected!"));
+            BTList.ItemsSource = bh.bListItems;
+        }
+
+        // nastaveni barev a listviewu pro stav - disconnected
+        public void SetDisconnected()
+        {
+            discover.BackgroundColor = Color.FromHex("#E65100");
+            disconnect.BackgroundColor = Color.FromHex("#E65100");
+            BTList.ItemsSource = null;
+            bh.bListItems.Clear();
+        }
+
+        // stisknuti tlacitka discover, zacne vyhledavat viditelna zarizeni BTs
         private async void Discover(object sender, EventArgs e)
         {
             try
@@ -45,20 +73,26 @@ namespace MyMetronomeApp.SettingsViews
                     // zacneme vyhledavat dostupna zarizeni
                     BluetoothAdapter.DiscoveryStateChanged += DiscoveryStateChangedEventHandler;
                     BluetoothAdapter.StartDiscovery();
+
+                    Toast.DisplayText("Discovering...");
+                    
                     await WaitDiscoveryFlag();
                     BluetoothAdapter.DiscoveryStateChanged -= DiscoveryStateChangedEventHandler;
 
-                    if (bh.FlagDeviceFound)
+                    // pokud nalezneme ukoncime vyhledavani, vyhledavani je narocne na zdroje BT
+                    if (bh.flagDeviceFound)
                     {
                         BluetoothAdapter.StopDiscovery();
                         BTList.ItemsSource = bh.bListItems;
                     }
+
                     else
                     {
                         Toast.DisplayText("No founded BT devices");
                     }
                 }
             }
+
             // pokud nedoslo k navazani BT spojeni vypise chybu
             catch (Exception ex)
             {
@@ -66,8 +100,22 @@ namespace MyMetronomeApp.SettingsViews
             }
         }
 
-        private void MakeConnection()
+        // po kliknuti na vybrane zarizeni zahajime pokus o spojeni
+        private void MakeConnection(int i)
         {
+
+            // vytvoreni socketu 
+            try
+            {
+                BluetoothHandler.Client = bh.bListItems[i].DeviceFound.CreateSocket(service_uuid);
+                BluetoothHandler.Client.ConnectionStateChanged += ConnectionStateChangedEventHandler;
+                bh.flagCreateClientDone = true;
+            }
+            catch (Exception ex)
+            {
+                Toast.DisplayText("CreateSocketError: " + ex.Message);
+            }
+
             // pokud jsme uspesne vytvorili clientsocket
             if (bh.flagCreateClientDone)
             {
@@ -76,14 +124,11 @@ namespace MyMetronomeApp.SettingsViews
                 {
                     BluetoothHandler.Client.Connect();
                     BluetoothHandler.Client.DataReceived += DataReceivedServerEventHandler;
-                    //Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
-                    bh.flagConnect = true;
                 }
                 catch (Exception ex)
                 {
                     Toast.DisplayText("CreateSocketError: " + ex.Message);
                 }
-
             }
             else
             {
@@ -91,41 +136,29 @@ namespace MyMetronomeApp.SettingsViews
             }
         }
 
+        // po kliknuti na vybrane zarizeni zahajime pokus o vytvoreni socketu a spojeni
         private void Connect(object sender, ItemTappedEventArgs e)
         {
-            if (e.Item != null)
+            // vyhledame item na ktery jsme kliknuli
+            MListItem item = (MListItem)e.Item;
+            for (int i = 0; i < bh.bListItems.Count(); i++)
             {
-                MListItem item = (MListItem)e.Item;
-                for (int i = 0; i < bh.bListItems.Count(); i++)
+                if (item.Name.Equals(bh.bListItems[i].Name))
                 {
-                    if (item.Name.Equals(bh.bListItems[i].Name))
+                    // bluetooth musi byt zapnuty
+                    if (!BluetoothAdapter.IsBluetoothEnabled)
                     {
-                        // bluetooth musi byt zapnuty
-                        if (!BluetoothAdapter.IsBluetoothEnabled)
-                        {
-                            Toast.DisplayText("Please turn on Bluetooth.");
-                        }
-                        else
-                        {
-                            // připojení 
-                            try
-                            {
-                                BluetoothHandler.Client = bh.bListItems[i].DeviceFound.CreateSocket(service_uuid);
-                                BluetoothHandler.Client.ConnectionStateChanged += ConnectionStateChangedEventHandler;
-                                bh.flagCreateClientDone = true;
-
-                            }
-                            catch (Exception ex)
-                            {
-                                Toast.DisplayText("CreateSocketError: " + ex.Message);
-                            }
-
-                            MakeConnection();
-                            break;
-                        }
+                        Toast.DisplayText("Please turn on Bluetooth.");
+                    }
+                    else
+                    {
+                        // pokus zahajeni spojeni
+                        MakeConnection(i);
+                        break;
                     }
                 }
             }
+ 
         }
 
         // funkce pro zaslani zpravy
@@ -159,14 +192,15 @@ namespace MyMetronomeApp.SettingsViews
                 {
                     BluetoothHandler.Client.Disconnect();
 
-                    //unregistr receivcer
+                    // zruseni eventHandleru a nastaveni flagu do vychozi hodnoty
                     BluetoothHandler.Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
                     BluetoothHandler.Client.DataReceived -= DataReceivedServerEventHandler;
                     bh.flagCreateClientDone = false;
                     bh.flagConnect = false;
+                    bh.flagDeviceFound = false;
 
-                    BTList.ItemsSource = null;
-                    bh.bListItems.Clear();
+                    // nastaveni barev a informace pro uzivatele o odpojeni
+                    SetDisconnected();
 
                     Toast.DisplayText("Disconnected!");
                 }
@@ -181,46 +215,26 @@ namespace MyMetronomeApp.SettingsViews
             }
         }
 
+        // eventHandler pro vyhledávání zařízení
         public static void DiscoveryStateChangedEventHandler(object sender, DiscoveryStateChangedEventArgs args)
         {
-            //Toast.DisplayText("DiscoveryStateChanged callback " + args.DiscoveryState);
             if (args.DiscoveryState == BluetoothDeviceDiscoveryState.Found)
             {
-                // nalezeno nove zarizeni
-                //Toast.DisplayText("DiscoveryStateChanged callback device found: " + args.DeviceFound.Name);
 
-                // vlozeni noveho zarizeni do seznamu, pokud tam jeste neni
+                // vlozeni naleznuteho zarizeni do seznamu, pokud tam jeste neni
                 MListItem findedItem = new MListItem(args.DeviceFound.Name.ToString(), args.DeviceFound);
 
                 if (!bh.bListItems.Contains(findedItem)){
                     bh.bListItems.Add(findedItem);
-                    //BluetoothHandler.Client = args.DeviceFound.CreateSocket(service_uuid);
-                    bh.FlagDeviceFound = true;
+
+                    bh.flagDeviceFound = true;
                 }
             }
         }
 
-        public static async Task WaitDiscoveryFlag()
+        // eventHandler pro vytvoření spojení
+        public void ConnectionStateChangedEventHandler(object sender, SocketConnectionStateChangedEventArgs args)
         {
-            int count = 0;
-            while (true)
-            {
-                await Task.Delay(2000);
-                count++;
-                if (bh.FlagDeviceFound)
-                {
-                    break;
-                }
-                if (count == 15)
-                {
-                    break;
-                }
-            }
-        }
-
-        public static void ConnectionStateChangedEventHandler(object sender, SocketConnectionStateChangedEventArgs args)
-        {
-            //Toast.DisplayText("ConnectionStateChanged callback in client " + args.State);
             BluetoothHandler.ClientState = args.State;
             BluetoothHandler.ClientConnection = args.Connection;
             BluetoothHandler.ClientResult = args.Result;
@@ -230,11 +244,14 @@ namespace MyMetronomeApp.SettingsViews
                 
                 if (BluetoothHandler.ClientConnection != null)
                 {
-                    //Toast.DisplayText("Callback: Socket of connection: " + BluetoothHandler.ClientConnection.SocketFd);
-                    //Toast.DisplayText("Callback: Address of connection: " + BluetoothHandler.ClientConnection.Address);
+                    // pokud je spojeni navazano na spravny socket
                     if(BluetoothHandler.ClientConnection.SocketFd != -1)
                     {
-                        Toast.DisplayText("Callback: Connected!");
+                        Toast.DisplayText("Connected!");
+
+                        SetConnected();
+
+                        bh.flagConnect = true;
                     }
                     else 
                     {
@@ -246,27 +263,51 @@ namespace MyMetronomeApp.SettingsViews
                     Toast.DisplayText("Callback: No connection data");
                 }
             }
+            
+            // pokud dojde k preruseni socketu, zarizeni je odpojeno
             else
             {
                 Toast.DisplayText("Callback: Disconnected!");
-                if (BluetoothHandler.ClientConnection != null)
-                {
-                    //Toast.DisplayText("Callback: Socket of disconnection: " + BluetoothHandler.ClientConnection.SocketFd);
-                    //Toast.DisplayText("Callback: Address of disconnection: " + BluetoothHandler.ClientConnection.Address);
-                }
-                else
-                {
-                    Toast.DisplayText("Callback: No connection data");
-                }
+
+                SetDisconnected();
+
+                // zruseni eventHandleru a nastaveni flagu do vychozi hodnoty
+                BluetoothHandler.Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
+                BluetoothHandler.Client.DataReceived -= DataReceivedServerEventHandler;
+
+                bh.flagConnect = false;
+                bh.flagCreateClientDone = false;
+                bh.flagDeviceFound = false;
             }
         }
 
+        // eventHandler pro přijímání dat
         private void DataReceivedServerEventHandler(object sender, SocketDataReceivedEventArgs args)
         {
             //BluetoothSetup.Data = args.Data;
             //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
             Toast.DisplayText("DataReceived in client: " + args.Data.Data);
             //flagServerDataReceived = true;
+        }
+
+        // pomocna funkce pro vyhledavani BT zarizeni, celkem hledame 20s
+        public static async Task WaitDiscoveryFlag()
+        {
+            int loop = 0;
+            while (true)
+            {
+                await Task.Delay(2000);
+
+                loop++;
+                if (bh.flagDeviceFound)
+                {
+                    break;
+                }
+                if (loop == 10)
+                {
+                    break;
+                }
+            }
         }
 
     }

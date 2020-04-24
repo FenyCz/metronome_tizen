@@ -7,6 +7,9 @@
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Update="PlayerViews\ChoosePlaylist.xaml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Update="Settings.xaml">
       <SubType>Designer</SubType>
     </EmbeddedResource>

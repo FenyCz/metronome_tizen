@@ -21,6 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="PlayerViews\ChoosePlaylist.xaml.cs">
+      <DependentUpon>ChoosePlaylist.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

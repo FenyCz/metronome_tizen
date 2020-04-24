@@ -12,6 +12,9 @@ C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkr
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\iconSettings.png
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\play.png
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\res\images\stop.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\shared\res\MM.png
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\shared\res\MyMetronomeApp.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\shared\res\Screen_20200406_155327.png
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\shared\res\SplashScreen.png
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\tpkroot\tizen-manifest.xml
 C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Debug\tizen40\org.tizen.example.MyMetronomeApp-1.0.0.tpk
