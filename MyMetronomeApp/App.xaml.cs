@@ -27,11 +27,13 @@ namespace MyMetronomeApp
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            //Tizen.System.Power.RequestCpuLock(0);
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            //Tizen.System.Power.ReleaseCpuLock();
         }
     }
 }

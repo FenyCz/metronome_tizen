@@ -20,7 +20,7 @@
                 x:Name="tempo"
                 FontSize="15"
                 HorizontalTextAlignment="Center"
-                Text="120"
+                Text="{Binding CurrentValue, Mode=TwoWay}"
                 VerticalTextAlignment="Center" />
             <StackLayout
                 Padding="0,0,0,0"
@@ -32,6 +32,7 @@
                     Margin="75,0,75,20"
                     BackgroundColor="#E65100"
                     Clicked="OnClick"
+                    Command="{Binding StartPlayer}"
                     HeightRequest="90"
                     ImageSource="images/play.png"
                     WidthRequest="90" />
@@ -42,7 +43,6 @@
                     HorizontalTextAlignment="Center"
                     Text="Naděje svítá nám "
                     VerticalTextAlignment="Center" />
-
             </StackLayout>
         </StackLayout>
 

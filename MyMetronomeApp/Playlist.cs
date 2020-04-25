@@ -21,16 +21,15 @@ namespace MyMetronomeApp
 
         public Playlist()
         {
-            //Songs = new List<SongItem>();
         }
 
-        public Playlist(string name)
+        public Playlist(string name, int songsId)
         {
             Name = name;
-            //Songs = songs;
+            SongsId = songsId;
         }
     }
-
+    
     public class Song
     {
         [PrimaryKey, AutoIncrement]
@@ -44,7 +43,6 @@ namespace MyMetronomeApp
 
         public Song()
         {
-            //Songs = new List<SongItem>();
         }
 
         public Song(string name, int tempo, int songsId)

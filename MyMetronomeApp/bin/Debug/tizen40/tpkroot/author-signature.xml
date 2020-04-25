@@ -92,11 +92,11 @@
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.pdb">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>ZIaIeKqK8Uc7wL9jlZtylGU16GQsfXmECkF3j6QAIEY=</DigestValue>
+      <DigestValue>CwdsW0x5XH5gncCfEBTntWstdz45nPdpfKeu30j7uZA=</DigestValue>
     </Reference>
     <Reference URI="bin%2FMyMetronomeApp.dll">
       <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256" />
-      <DigestValue>UmMXKEU6IRsLznll4g9m7RuVF7ooWpViBStjoHFEKxc=</DigestValue>
+      <DigestValue>WQfCCjDYo/SN3U90PDjXyXD0Dzj0VJXJFORyd29JTkc=</DigestValue>
     </Reference>
     <Reference URI="#prop">
       <Transforms>
@@ -107,11 +107,11 @@
     </Reference>
   </SignedInfo>
   <SignatureValue>
-Vfv2aKWghkj+n/ARj6wNQRGXy5TEc/SrRs+EgfQwW+clcDD/LBu/O9sYP+yH6GRuhoI1RlnxU6Yy
-q0wAEF2IK4/I6UnB/fDJBaGceSpMsIvoiuuPgj79lZG4PPw2hdzWnqGUSR19VBAL6kXw3egXlgRZ
-Qqy3T00XBREhNHOzn6z5bgbg3m+jjAUerYAzPOq8RFLTYI/s5zDDAj4GPqQkjIbxomGDSVFGK3cc
-JtybfN37Mpkl68bX50Az65KCqw1iH97FvgbpgYhUzN0bKwP17Sdj2oskCXVYE5TKph8ADfBRkGHq
-liOM+5wOX+ITJt8LjueHSRyfGJ7VKEcyn0iEKA==
+BVtwbL1taLqQ0TrWSMLeMBxqOYLZrQ6dl/coSE86W6YE13SZSZK6jOQIYJ+lFxVLi0EP6Qg8aUV4
+FY8TYc5+wf3fipyjPbNw8c2AFCYFvro8aD4LUIrAKkDlL/1bhyo7B8oUKAOo46XjTgTP58hrJgKN
+SIDpWD4yJZfIVgAdKwHJiGAwA8SzRh5pfx9eOehpFB1m+vQWnTxj3SXEhR9ihJ4CDF6E2CxePs4o
+71fgOZXGd5aN9VsN4pM6e8Ed04lqoKgOcK4QbkbmaWSc6l6/PGJIYt7QW43ehv5ofFBCxjaujNFS
+TFlsssQXaRtJJz4HB4cPz6GaFA1OTqybkdabTQ==
 </SignatureValue>
   <KeyInfo>
     <X509Data>

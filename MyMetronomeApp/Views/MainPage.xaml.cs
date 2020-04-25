@@ -21,12 +21,11 @@ namespace MyMetronomeApp
     {
         MetronomeViewModel mViewModel = new MetronomeViewModel();
         BluetoothHandler mHandler = new BluetoothHandler();
-        PlayerViewModel pViewModel;
+        PlayerViewModel pViewModel = new PlayerViewModel();
 
         public MainPage()
         {
             InitializeComponent();
-            pViewModel = new PlayerViewModel();
             MakeMainListView();
         }
         private void MakeMainListView()

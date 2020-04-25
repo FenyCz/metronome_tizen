@@ -28,12 +28,12 @@ namespace MyMetronomeApp.PlayerViews
 
         private void ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            MListItem item = (MListItem)e.Item;
+            Playlist item = (Playlist)e.Item;
             for (int i = 0; i < pViewModel.pListItems.Count(); i++)
             {
                 if (item.Name.Equals(pViewModel.pListItems[i].Name))
                 {
-                    Navigation.PushModalAsync(new Player(pViewModel, pViewModel.pListItems[i]));
+                    Navigation.PushModalAsync(new Player(pViewModel, pViewModel.pListItems[i].SongsId));
                 }
             }
         }

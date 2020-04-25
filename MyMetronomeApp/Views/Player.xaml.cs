@@ -20,22 +20,40 @@ namespace MyMetronomeApp
         PlayerViewModel pViewModel;
         private Button btn;
         private bool btnPlay = true;
-        List<SongItem> pListItems = new List<SongItem>();
-        Playlist currentPlaylist;
+        List<SongItem> songList = new List<SongItem>();
+        int idPlaylist;
 
         bool _rotating;
         int _angle;
+        bool flagNoSongs = false;
 
-        public Player(PlayerViewModel data, Playlist playlist)
+        public Player(PlayerViewModel data, int songsId)
         {
             InitializeComponent();
             pViewModel = data;
-            currentPlaylist = playlist;
+            idPlaylist = songsId;
             BindingContext = pViewModel;
             _angle = 0;
-
-            //tempo.Text = currentPlaylist.Songs[0].Tempo.ToString();
-            //songName.Text = currentPlaylist.Songs[0].Name;
+            
+            for(int k = 0; k < pViewModel.sListItems.Count; k++)
+            {
+                if (pViewModel.sListItems[k].SongsId == idPlaylist)
+                {
+                    songList.Add(new SongItem(pViewModel.sListItems[k].Name, pViewModel.sListItems[k].Tempo));
+                }
+            }
+            
+            if(songList.Count == 0)
+            {
+                tempo.Text = "100";
+                songName.Text = "No songs";
+                flagNoSongs = true;
+            }
+            else
+            {
+                tempo.Text = songList[0].Tempo.ToString();
+                songName.Text = songList[0].Name;
+            }
         }
 
         private void OnClick(object sender, EventArgs e)
@@ -67,6 +85,11 @@ namespace MyMetronomeApp
         {
             if (_rotating) return;
 
+            if(flagNoSongs)
+            {
+                return;
+            }
+
             _rotating = true;
 
             _angle += args.IsClockwise ? 1 : -1;
@@ -76,12 +99,12 @@ namespace MyMetronomeApp
                 _angle = 0;
             }
 
-            if(_angle >= pListItems.Count())
+            if(_angle >= songList.Count())
             {
-                _angle = pListItems.Count() - 1; 
+                _angle = songList.Count() - 1; 
             }
-           // tempo.Text = currentPlaylist.Songs[0].Tempo.ToString();
-            //songName.Text = currentPlaylist.Songs[0].Name;
+            tempo.Text = songList[_angle].Tempo.ToString();
+            songName.Text = songList[_angle].Name;
 
             _rotating = false;
            
