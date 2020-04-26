@@ -21,23 +21,23 @@ namespace MyMetronomeApp
         private Button btn;
         private bool btnPlay = true;
         List<SongItem> songList = new List<SongItem>();
-        int idPlaylist;
+        string idPlaylist;
 
         bool _rotating;
         int _angle;
         bool flagNoSongs = false;
 
-        public Player(PlayerViewModel data, int songsId)
+        public Player(PlayerViewModel data, string nameId)
         {
             InitializeComponent();
             pViewModel = data;
-            idPlaylist = songsId;
+            idPlaylist = nameId;
             BindingContext = pViewModel;
             _angle = 0;
             
             for(int k = 0; k < pViewModel.sListItems.Count; k++)
             {
-                if (pViewModel.sListItems[k].SongsId == idPlaylist)
+                if (pViewModel.sListItems[k].PlaylistName == idPlaylist)
                 {
                     songList.Add(new SongItem(pViewModel.sListItems[k].Name, pViewModel.sListItems[k].Tempo));
                 }

@@ -285,6 +285,8 @@ namespace MyMetronomeApp.SettingsViews
             //BluetoothSetup.Data = args.Data;
             //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
             Toast.DisplayText("DataReceived in client: " + args.Data.Data, 2000);
+            bh.pViewModel.InitDatabase();
+            bh.pViewModel.InsertDatabase(args.Data.Data);
             //flagServerDataReceived = true;
         }
 

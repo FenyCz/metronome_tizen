@@ -33,7 +33,7 @@ namespace MyMetronomeApp.PlayerViews
             {
                 if (item.Name.Equals(pViewModel.pListItems[i].Name))
                 {
-                    Navigation.PushModalAsync(new Player(pViewModel, pViewModel.pListItems[i].SongsId));
+                    Navigation.PushModalAsync(new Player(pViewModel, pViewModel.pListItems[i].Name));
                 }
             }
         }

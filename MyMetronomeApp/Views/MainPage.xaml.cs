@@ -20,11 +20,12 @@ namespace MyMetronomeApp
     public partial class MainPage : CirclePage
     {
         MetronomeViewModel mViewModel = new MetronomeViewModel();
-        BluetoothHandler mHandler = new BluetoothHandler();
         PlayerViewModel pViewModel = new PlayerViewModel();
+        BluetoothHandler mHandler;
 
         public MainPage()
         {
+            mHandler = new BluetoothHandler(pViewModel);
             InitializeComponent();
             MakeMainListView();
         }

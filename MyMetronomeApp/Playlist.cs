@@ -15,18 +15,15 @@ namespace MyMetronomeApp
 
         public string Name { get; set; }
 
-        public int SongsId { get; set; }
-
         //public List<SongItem> Songs { get; set; }
 
         public Playlist()
         {
         }
 
-        public Playlist(string name, int songsId)
+        public Playlist(string name)
         {
             Name = name;
-            SongsId = songsId;
         }
     }
     
@@ -39,17 +36,17 @@ namespace MyMetronomeApp
 
         public int Tempo { get; set; }
 
-        public int SongsId { get; set; }
+        public string PlaylistName { get; set; }
 
         public Song()
         {
         }
 
-        public Song(string name, int tempo, int songsId)
+        public Song(string name, int tempo, string playlist)
         {
             Name = name;
             Tempo = tempo;
-            SongsId = songsId;
+            PlaylistName = playlist;
         }
     }
     

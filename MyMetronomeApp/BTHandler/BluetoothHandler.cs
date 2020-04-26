@@ -1,4 +1,5 @@
 ﻿using MyMetronomeApp.SettingsViews;
+using MyMetronomeApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,5 +22,11 @@ namespace MyMetronomeApp.BTHandler
         public List<MListItem> bListItems = new List<MListItem>();
 
         public string mobileName = null;
+        public PlayerViewModel pViewModel;
+
+        public BluetoothHandler(PlayerViewModel pViewModel)
+        {
+            this.pViewModel = pViewModel;
+        }
     }
 }
