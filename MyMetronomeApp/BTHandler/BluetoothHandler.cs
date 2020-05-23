@@ -18,6 +18,7 @@ namespace MyMetronomeApp.BTHandler
         public bool flagDeviceFound = false;
         public bool flagCreateClientDone = false;
         public bool flagConnect = false;
+        public bool flagServerDataReceived = false;
 
         public List<MListItem> bListItems = new List<MListItem>();
 

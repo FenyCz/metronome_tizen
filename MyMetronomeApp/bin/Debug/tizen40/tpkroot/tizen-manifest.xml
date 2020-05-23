@@ -1,10 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest package="org.tizen.example.MyMetronomeApp" version="1.0.0" api-version="4" xmlns="http://tizen.org/ns/packages">
+<manifest package="MyMetronomeApp" version="1.0.1" api-version="4" xmlns="http://tizen.org/ns/packages">
     <profile name="wearable" />
     <ui-application appid="org.tizen.example.MyMetronomeApp" exec="MyMetronomeApp.dll" multiple="false" nodisplay="false" taskmanage="true" type="dotnet" splash-screen-display="true" launch_mode="single">
         <label>MyMetronomeApp</label>
         <icon>MM.png</icon>
         <metadata key="http://tizen.org/metadata/prefer_dotnet_aot" value="true" />
+        <background-category value="media" />
         <splash-screens>
             <splash-screen indicator-display="false" orientation="portrait" src="SplashScreen.png" type="img" />
         </splash-screens>
@@ -14,6 +15,8 @@
         <privilege>http://tizen.org/privilege/haptic</privilege>
         <privilege>http://tizen.org/privilege/bluetooth</privilege>
         <privilege>http://tizen.org/privilege/display</privilege>
+        <privilege>http://tizen.org/privilege/power</privilege>
+        <privilege>http://tizen.org/privilege/appmanager.launch</privilege>
     </privileges>
     <dependencies />
     <provides-appdefined-privileges />

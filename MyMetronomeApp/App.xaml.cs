@@ -27,12 +27,14 @@ namespace MyMetronomeApp
         protected override void OnSleep()
         {
             // Handle when your app sleeps
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Tizen.System.Power.RequestCpuLock(0));
             //Tizen.System.Power.RequestCpuLock(0);
         }
 
         protected override void OnResume()
         {
             // Handle when your app resumes
+            Xamarin.Forms.Device.BeginInvokeOnMainThread(() => Tizen.System.Power.ReleaseCpuLock());
             //Tizen.System.Power.ReleaseCpuLock();
         }
     }

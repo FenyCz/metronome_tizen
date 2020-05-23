@@ -142,7 +142,12 @@ namespace MyMetronomeApp.SettingsViews
             MListItem item = (MListItem)e.Item;
             for (int i = 0; i < bh.bListItems.Count(); i++)
             {
-                if (item.Name.Equals(bh.bListItems[i].Name))
+                if(item.Name.Equals("Connected!"))
+                {
+                    Toast.DisplayText("You are connected!", 1000);
+                }
+                
+                else if (item.Name.Equals(bh.bListItems[i].Name))
                 {
                     // bluetooth musi byt zapnuty
                     if (!BluetoothAdapter.IsBluetoothEnabled)
@@ -197,11 +202,12 @@ namespace MyMetronomeApp.SettingsViews
                     bh.flagCreateClientDone = false;
                     bh.flagConnect = false;
                     bh.flagDeviceFound = false;
+                    bh.flagServerDataReceived = false;
 
                     // nastaveni barev a informace pro uzivatele o odpojeni
                     SetDisconnected();
 
-                    Toast.DisplayText("Disconnected!", 2000);
+                   // Toast.DisplayText("Disconnected!", 2000);
                 }
                 else
                 {
@@ -211,6 +217,16 @@ namespace MyMetronomeApp.SettingsViews
             catch (Exception ex)
             {
                 Toast.DisplayText("DisconnectError: " + ex.Message);
+
+                BluetoothHandler.Client.Disconnect();
+
+                // zruseni eventHandleru a nastaveni flagu do vychozi hodnoty
+                BluetoothHandler.Client.ConnectionStateChanged -= ConnectionStateChangedEventHandler;
+                BluetoothHandler.Client.DataReceived -= DataReceivedServerEventHandler;
+                bh.flagCreateClientDone = false;
+                bh.flagConnect = false;
+                bh.flagDeviceFound = false;
+                bh.flagServerDataReceived = false;
             }
         }
 
@@ -284,10 +300,17 @@ namespace MyMetronomeApp.SettingsViews
         {
             //BluetoothSetup.Data = args.Data;
             //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
-            Toast.DisplayText("DataReceived in client: " + args.Data.Data, 2000);
-            bh.pViewModel.InitDatabase();
+            //Toast.DisplayText("DataReceived in client: " + args.Data.Data, 2000);
+            Toast.DisplayText("Received", 1000);
+            //bh.pViewModel.InitDatabase();
+            if (!bh.flagServerDataReceived)
+            {
+                bh.pViewModel.DeleteDatabase();
+                bh.flagServerDataReceived = true;
+            }
+
             bh.pViewModel.InsertDatabase(args.Data.Data);
-            //flagServerDataReceived = true;
+            
         }
 
         // pomocna funkce pro vyhledavani BT zarizeni, celkem hledame 20s

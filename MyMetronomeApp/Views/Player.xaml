@@ -12,7 +12,6 @@
     <c:CirclePage.Content>
         <StackLayout
             Padding="50,60,50,50"
-            BackgroundColor="Green"
             HorizontalOptions="Center"
             Orientation="Vertical"
             VerticalOptions="Start">
@@ -24,7 +23,6 @@
                 VerticalTextAlignment="Center" />
             <StackLayout
                 Padding="0,0,0,0"
-                BackgroundColor="Yellow"
                 HorizontalOptions="FillAndExpand"
                 Orientation="Vertical"
                 VerticalOptions="FillAndExpand">
@@ -38,7 +36,6 @@
                     WidthRequest="90" />
                 <Label
                     x:Name="songName"
-                    BackgroundColor="Red"
                     FontSize="7"
                     HorizontalTextAlignment="Center"
                     Text="Naděje svítá nám "

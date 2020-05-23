@@ -1,0 +1,15 @@
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Release\tizen40\MyMetronomeApp.deps.json
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\bin\Release\tizen40\MyMetronomeApp.dll
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\MyMetronomeApp.csprojAssemblyReference.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\App.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\PlayerViews\ChoosePlaylist.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\SettingsViews\Bluetooth.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\Views\MainPage.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\Views\Metronome.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\Views\Player.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\Views\Settings.xaml.g.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\MyMetronomeApp.csproj.CoreCompileInputs.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\MyMetronomeApp.AssemblyInfoInputs.cache
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\MyMetronomeApp.AssemblyInfo.cs
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\XamlC.stamp
+C:\Users\fanap\source\repos\MyMetronomeApp\MyMetronomeApp\obj\Release\tizen40\MyMetronomeApp.dll

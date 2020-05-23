@@ -30,8 +30,8 @@ namespace MyMetronomeApp
             List<MListItem> sListItems = new List<MListItem>
             {
                 new MListItem("Bluetooth"),
-                new MListItem("Vibration"),
-                new MListItem("Sound"),
+                //new MListItem("Vibration"),
+                //new MListItem("Sound"),
 
             };
             SettingsList.ItemsSource = sListItems;

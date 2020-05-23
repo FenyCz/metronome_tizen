@@ -36,9 +36,9 @@ namespace MyMetronomeApp.ViewModel
 
         public PlayerViewModel() {
 
-            //InitDatabase();
+            InitDatabase();
 
-            //InsertDatabase("af");
+            InsertDefault();
 
             startPlayer = new Command(PlayStopCommand);
 
@@ -70,9 +70,23 @@ namespace MyMetronomeApp.ViewModel
                 dbConnection.CreateTable<Song>();
             }
 
+        }
+
+        public void InsertDefault()
+        {
+            var playlistList = dbConnection.Table<Playlist>();
+            foreach (var item in playlistList) { pListItems.Add(new Playlist(item.Name)); }
+
+            var songList = dbConnection.Table<Song>();
+            foreach (var item in songList) { sListItems.Add(new Song(item.Name, item.Tempo, item.PlaylistName)); }
+        }
+
+        public void DeleteDatabase()
+        {
             dbConnection.DeleteAll<Playlist>();
             dbConnection.DeleteAll<Song>();
-
+            pListItems.Clear();
+            sListItems.Clear();
         }
 
         public void InsertDatabase(string data)
@@ -87,6 +101,7 @@ namespace MyMetronomeApp.ViewModel
 
             List<string> songData = new List<string>();
 
+            // vezmu prijate bajty a rozdelim je na songy a playlisty, oddelovac je #
             for (int p = 0; p < charArray.Length; p++)
             {
 
@@ -101,14 +116,20 @@ namespace MyMetronomeApp.ViewModel
                 }
             }
 
+
+            // vezmu songy a playlisty a postupne je roztridim 
             for (int k = 0; k < stringList.Count; k++)
             {
 
                 dataArray = stringList[k].ToCharArray();
                 
+                // pokud jde o playlist - format napr. P*Majvely
                 if (dataArray[0] == 'P')
                 {
+                    
                     int l = 2;
+
+                    // nactu cele jeho jmeno
                     while(dataArray.Length != l)
                     {
                         string charName = "";
@@ -117,20 +138,29 @@ namespace MyMetronomeApp.ViewModel
                         l++;
                     }
 
+                    // vytvorim novy playlist
                     Playlist playlist = new Playlist
                     {
                         Name = playlistNameString,
                     };
 
-                    dbConnection.Insert(playlist);
+                    Playlist playlistForList = new Playlist(playlistNameString);
 
+                    if (!pListItems.Any(item => item.Name == playlistForList.Name))
+                    {
+                        // vlozim do databaze
+                        dbConnection.Insert(playlist);
+                    }
+                    
                     playlistNameString = ""; 
                 }
 
+                // pokud jde o song - format napr. S*Boure*140*Majvely
                 else if (dataArray[0] == 'S')
                 {
                     int m = 2;
 
+                    // nactu jmeno a tempo
                     for (int n = 0; n < 2; n++)
                     {
 
@@ -143,10 +173,12 @@ namespace MyMetronomeApp.ViewModel
                         }
                         m++;
 
+                        // ulozim data o songu do seznamu
                         songData.Add(songNameString);
                         songNameString = "";
                     }
 
+                    // nactu playlist, do ktereho song patri
                     while(dataArray.Length != m)
                     {
                         string charName = "";
@@ -155,9 +187,11 @@ namespace MyMetronomeApp.ViewModel
                         m++;
                     }
 
+                    // ulozim nazev playlistu do seznamu
                     songData.Add(songNameString);
                     songNameString = "";
 
+                    // vytvorim novy song
                     Song song = new Song
                     {
                         Name = songData[0],
@@ -165,75 +199,35 @@ namespace MyMetronomeApp.ViewModel
                         PlaylistName = songData[2],
                     };
 
-                    dbConnection.Insert(song);
+                    Song songForList = new Song(songData[0], int.Parse(songData[1]), songData[2]);
+
+                    if (!sListItems.Any(item => item.Name == songForList.Name && item.PlaylistName == songForList.PlaylistName))
+                    {
+                        // vlozim do databaze
+                        dbConnection.Insert(song);
+                    }
+
+                    song = null;
+                    songForList = null;
 
                     songData.Clear();
                 }
             }
 
-
-
-
-
-            //insert into table
-            /*playlist1 = new Playlist
-            {
-                Name = "Majvely",
-            };*/
-
-            //playlist1.Songs.Add(new SongItem("Naděje svítá nám", 145));
-            //playlist1.Songs.Add(new SongItem("Florentská romance", 140));
-
-            /*playlist2 = new Playlist
-            {
-                Name = "Calienté",
-            };*/
-
-                    //playlist2.Songs.Add(new SongItem("Calienté", 145));
-                    //playlist2.Songs.Add(new SongItem("Výtahovej song", 140));
-
-                    //dbConnection.Insert(playlist1);
-            //dbConnection.Insert(playlist2);
-
-           /* Song song = new Song
-            {
-                Name = "Tvarohová",
-                Tempo = 100,
-                PlaylistName = "Majvely",
-            };*/
-
-            /*Song song1 = new Song
-            {
-                Name = "Naděje svítá nám a taky že jo vy tlamy",
-                Tempo = 200,
-                SongsId = 1,
-            };*/
-
-            //dbConnection.Insert(song);
-
-            //dbConnection.Insert(song1);
-
             var playlistList = dbConnection.Table<Playlist>();
-            foreach (var item in playlistList) { pListItems.Add(new Playlist(item.Name)); }
+            foreach (var item in playlistList) { 
+                if(!pListItems.Any(i => i.Name == item.Name))
+                {
+                    pListItems.Add(new Playlist(item.Name));
+                }
+            }
 
             var songList = dbConnection.Table<Song>();
-            foreach (var item in songList) { sListItems.Add(new Song(item.Name, item.Tempo, item.PlaylistName)); }
-
-            //var inList = dbConnection.Table<Playlist>();
-
-            /*foreach (var item in inList)
-            {
-                if (string.Compare(item.Name, playlist1.Name ) != 0)
-                {
-                    dbConnection.Insert(playlist1);
+            foreach (var item in songList) { 
+                if(!sListItems.Any(i => i.Name == item.Name && i.PlaylistName == item.PlaylistName)){
+                    sListItems.Add(new Song(item.Name, item.Tempo, item.PlaylistName));
                 }
-
-                if (string.Compare(item.Name, playlist2.Name) != 0)
-                {
-                    dbConnection.Insert(playlist2);
-                }
-            }*/
-
+            }
         }
 
         public int CurrentValue

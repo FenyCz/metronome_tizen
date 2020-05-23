@@ -96,13 +96,14 @@ namespace MyMetronomeApp
 
             if(_angle < 1)
             {
-                _angle = 0;
+                _angle = songList.Count() - 1;
             }
 
-            if(_angle >= songList.Count())
+            else if(_angle >= songList.Count())
             {
-                _angle = songList.Count() - 1; 
+                _angle = 0; 
             }
+
             tempo.Text = songList[_angle].Tempo.ToString();
             songName.Text = songList[_angle].Name;
 
