@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +20,7 @@ using MyMetronomeApp.ViewModel;
 
 namespace MyMetronomeApp
 {
+    // třída představující stránku metronomu
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Metronome : CirclePage
     {
@@ -27,6 +36,7 @@ namespace MyMetronomeApp
             InitializeComponent();
         }
 
+        // funkce reagující na stisknutí tlačítka
         private void OnClick(object sender, EventArgs e)
         {
             btn = sender as Button;
@@ -44,6 +54,7 @@ namespace MyMetronomeApp
             }
         }
 
+        // funkce pro ukončení metronomu při návratu zpět na hlavní stránku
         protected override bool OnBackButtonPressed()
         {
             mViewModel.timer.Enabled = false;

@@ -1,4 +1,32 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ *
+ * Funkce pro práci s databází InitDatabase(), InsertDatabase() a DeleteDatabase() jsou obdobné samplu od Samsungu pro práci s SQLite
+ * Název samplu: SQLite.Net.Sample
+ * Programovací jazyk: C#
+ * Dostupné online: https://github.com/Samsung/Tizen-CSharp-Samples/tree/master/Wearable/SQLite.NET.Sample
+ * Licence samplu: 
+ *
+ * Copyright 2018 Samsung Electronics Co., Ltd
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ * 
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ * 
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Timers;
 using Tizen.System;
@@ -13,6 +41,8 @@ using System.Linq;
 
 namespace MyMetronomeApp.ViewModel
 {
+
+    // třída která je zodpovědná za vkládání do databáze a získávání dat o playlistech
     public class PlayerViewModel : ViewModelBase
     {
         public Command startPlayer;
@@ -34,6 +64,7 @@ namespace MyMetronomeApp.ViewModel
         string playlistNameString;
         string songNameString;
 
+        // konstruktor
         public PlayerViewModel() {
 
             InitDatabase();
@@ -45,6 +76,7 @@ namespace MyMetronomeApp.ViewModel
             timer.Elapsed += ClickEvent;
         }
 
+        // funkce pro inicializaci databáze
         public void InitDatabase()
         {
             bool flagCreateTable = false;
@@ -57,7 +89,7 @@ namespace MyMetronomeApp.ViewModel
 
             dbPath = Path.Combine(writablePath, "SQLite3.db3");
 
-            // Check the database file to decide table creation.
+            // kontrola jestli existuje databázový soubor
             if (!File.Exists(dbPath))
             {
                 flagCreateTable = true;
@@ -72,6 +104,7 @@ namespace MyMetronomeApp.ViewModel
 
         }
 
+        // vložení dat z databáze do playlistů
         public void InsertDefault()
         {
             var playlistList = dbConnection.Table<Playlist>();
@@ -81,6 +114,7 @@ namespace MyMetronomeApp.ViewModel
             foreach (var item in songList) { sListItems.Add(new Song(item.Name, item.Tempo, item.PlaylistName)); }
         }
 
+        // funkce pro odstranění databáze playlistů
         public void DeleteDatabase()
         {
             dbConnection.DeleteAll<Playlist>();
@@ -89,6 +123,7 @@ namespace MyMetronomeApp.ViewModel
             sListItems.Clear();
         }
 
+        // funkce pro vložení playlistů do databáze
         public void InsertDatabase(string data)
         {
             string receivedData = data;
@@ -213,7 +248,8 @@ namespace MyMetronomeApp.ViewModel
                     songData.Clear();
                 }
             }
-
+            
+            // vložím playlisty do databáze s playlisty
             var playlistList = dbConnection.Table<Playlist>();
             foreach (var item in playlistList) { 
                 if(!pListItems.Any(i => i.Name == item.Name))
@@ -222,6 +258,7 @@ namespace MyMetronomeApp.ViewModel
                 }
             }
 
+            // vložím písničky do databáze s písničkami
             var songList = dbConnection.Table<Song>();
             foreach (var item in songList) { 
                 if(!sListItems.Any(i => i.Name == item.Name && i.PlaylistName == item.PlaylistName)){
@@ -230,6 +267,7 @@ namespace MyMetronomeApp.ViewModel
             }
         }
 
+        // proměnná pro nastavení současného tempa písničky
         public int CurrentValue
         {
             set
@@ -239,6 +277,7 @@ namespace MyMetronomeApp.ViewModel
                     currentValue = value;
                     SetProperty(ref currentValue, value);
 
+                    // pokud přepnu mezi písničkami, zapnu znovu
                     if (isPlaying)
                     {
                         timer.Stop();
@@ -256,6 +295,7 @@ namespace MyMetronomeApp.ViewModel
             get { return currentValue; }
         }
 
+        // funkce pro zapnutí přehrávání playlistu
         private void PlayStopCommand(object obj)
         {
             if (!isPlaying)
@@ -275,10 +315,10 @@ namespace MyMetronomeApp.ViewModel
             }
         }
 
+        // funkce pro vybrování metronomu
         private void ClickEvent(object sender, ElapsedEventArgs e)
         {
             vibrator.Vibrate(60, 100);
-            //timer.AutoReset = true;
             timer.Start();
         }
 

@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +22,8 @@ using MyMetronomeApp.BTHandler;
 
 namespace MyMetronomeApp.SettingsViews
 {
+
+    // třída sloužící k vytvoření Bluetooth komunikace
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Bluetooth : CirclePage
     {
@@ -21,19 +31,20 @@ namespace MyMetronomeApp.SettingsViews
 
         public static string service_uuid = "00001101-0000-1000-8000-00805F9B34FB";
 
+        // konstruktor
         public Bluetooth(BluetoothHandler data)
         {
             InitializeComponent();
             bh = data;
 
-            // pokud je spojeni navazano, tak informuje - connected
+            // pokud je již spojení navázáno, informuje uživatele textem a nastavením barev
             if (bh.flagConnect)
             {
                 SetConnected();
             }
         }
 
-        // nastaveni barev a listviewu pro stav - connected
+        // nastavení barev a listView pro stav, kdy je připojení navázáno
         public void SetConnected()
         {
             discover.BackgroundColor = Color.FromHex("#008000");
@@ -45,7 +56,7 @@ namespace MyMetronomeApp.SettingsViews
             BTList.ItemsSource = bh.bListItems;
         }
 
-        // nastaveni barev a listviewu pro stav - disconnected
+        // nastavení barev a listView pro stav, kdy připojení navázáno není
         public void SetDisconnected()
         {
             discover.BackgroundColor = Color.FromHex("#E65100");
@@ -54,17 +65,18 @@ namespace MyMetronomeApp.SettingsViews
             bh.bListItems.Clear();
         }
 
-        // stisknuti tlacitka discover, zacne vyhledavat viditelna zarizeni BT
+        // stisknutím na tlačítko Discover začne vyhledávání bluetooth zařízení
         private async void Discover(object sender, EventArgs e)
         {
             try
             {
-                // pokud je BT vypnut
+                // pokud je bluetooth vypnutý
                 if (!BluetoothAdapter.IsBluetoothEnabled)
                 {
                     Toast.DisplayText("Please turn on Bluetooth.", 2000);
                 }
 
+                // pokud je bluetooth zapnutý
                 else
                 {
                     BTList.ItemsSource = null;
@@ -72,13 +84,13 @@ namespace MyMetronomeApp.SettingsViews
 
                     Toast.DisplayText("Discovering...", 2000);
 
-                    // zacneme vyhledavat dostupna zarizeni
+                    // začneme vyhledávat dostupná zařízení
                     BluetoothAdapter.DiscoveryStateChanged += DiscoveryStateChangedEventHandler;
                     BluetoothAdapter.StartDiscovery();
                     await WaitDiscoveryFlag();
                     BluetoothAdapter.DiscoveryStateChanged -= DiscoveryStateChangedEventHandler;
 
-                    // pokud nalezneme, ukoncime vyhledavani, vyhledavani je narocne na zdroje BT
+                    // pokud nalezneme, ukončíme vyhledávání, vyhledávání je náročné na zdroje BT
                     if (bh.flagDeviceFound)
                     {
                         BluetoothAdapter.StopDiscovery();
@@ -92,7 +104,7 @@ namespace MyMetronomeApp.SettingsViews
                 }
             }
 
-            // pokud nedoslo k navazani BT spojeni vypise chybu
+            // pokud nedošlo k navázání BT spojení vypíše chybu
             catch (Exception ex)
             {
                 Toast.DisplayText("DiscoverError: " + ex.Message, 2000);
@@ -298,17 +310,18 @@ namespace MyMetronomeApp.SettingsViews
         // eventHandler pro přijímání dat
         private void DataReceivedServerEventHandler(object sender, SocketDataReceivedEventArgs args)
         {
-            //BluetoothSetup.Data = args.Data;
-            //LogUtils.Write(LogUtils.DEBUG, LogUtils.TAG, "DataReceived in client: " + args.Data.Data);
-            //Toast.DisplayText("DataReceived in client: " + args.Data.Data, 2000);
+
+            // oznámení uživateli, že jsme dostali data
             Toast.DisplayText("Received", 1000);
-            //bh.pViewModel.InitDatabase();
+
+            // pokud došlo k příjmu prvních dat
             if (!bh.flagServerDataReceived)
             {
                 bh.pViewModel.DeleteDatabase();
                 bh.flagServerDataReceived = true;
             }
 
+            // vložíme data do databáze
             bh.pViewModel.InsertDatabase(args.Data.Data);
             
         }

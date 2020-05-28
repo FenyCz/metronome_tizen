@@ -1,4 +1,12 @@
-﻿using SQLite;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +15,7 @@ using Tizen.Pims.Contacts.ContactsViews;
 
 namespace MyMetronomeApp
 {
+    // třída pro vytváření playlistů, které se vkládají do databáze
     public class Playlist
     {
 
@@ -27,6 +36,7 @@ namespace MyMetronomeApp
         }
     }
     
+    // třída pro vytváření písniček, které se vkládají do databáze
     public class Song
     {
         [PrimaryKey, AutoIncrement]

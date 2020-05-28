@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +22,7 @@ using MyMetronomeApp.ViewModel;
 
 namespace MyMetronomeApp
 {
+    // třída představující stránku s playlistem
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Player : CirclePage, IRotaryEventReceiver
     {
@@ -23,8 +32,8 @@ namespace MyMetronomeApp
         List<SongItem> songList = new List<SongItem>();
         string idPlaylist;
 
-        bool _rotating;
-        int _angle;
+        bool rotating;
+        int angle;
         bool flagNoSongs = false;
 
         public Player(PlayerViewModel data, string nameId)
@@ -33,8 +42,9 @@ namespace MyMetronomeApp
             pViewModel = data;
             idPlaylist = nameId;
             BindingContext = pViewModel;
-            _angle = 0;
+            angle = 0;
             
+            // vložení všech písniček daného playlistu do playeru
             for(int k = 0; k < pViewModel.sListItems.Count; k++)
             {
                 if (pViewModel.sListItems[k].PlaylistName == idPlaylist)
@@ -43,12 +53,14 @@ namespace MyMetronomeApp
                 }
             }
             
+            // pokud není v playlistu žádná písnička
             if(songList.Count == 0)
             {
                 tempo.Text = "100";
                 songName.Text = "No songs";
                 flagNoSongs = true;
             }
+
             else
             {
                 tempo.Text = songList[0].Tempo.ToString();
@@ -56,6 +68,7 @@ namespace MyMetronomeApp
             }
         }
 
+        // funkce reagující na stisknutí tlačítka
         private void OnClick(object sender, EventArgs e)
         {
             btn = sender as Button;
@@ -73,6 +86,7 @@ namespace MyMetronomeApp
             }
         }
 
+        // funkce pro ukončení playeru při návratu zpět 
         protected override bool OnBackButtonPressed()
         {
             pViewModel.timer.Enabled = false;
@@ -81,33 +95,37 @@ namespace MyMetronomeApp
             return base.OnBackButtonPressed();
         }
 
+        // funkce pro listování mezi písničkami playlistu
         public void Rotate(RotaryEventArgs args)
         {
-            if (_rotating) return;
+            if (rotating) return;
 
+            // pokud neobsahuje playlist žádný song
             if(flagNoSongs)
             {
                 return;
             }
 
-            _rotating = true;
+            rotating = true;
 
-            _angle += args.IsClockwise ? 1 : -1;
+            angle += args.IsClockwise ? 1 : -1;
 
-            if(_angle < 1)
+            // pokud jsme jdeme ze začátku na konec playlistu
+            if(angle < 1)
             {
-                _angle = songList.Count() - 1;
+                angle = songList.Count() - 1;
             }
 
-            else if(_angle >= songList.Count())
+            // pokud jdeme z konce na začátek playlistu
+            else if(angle >= songList.Count())
             {
-                _angle = 0; 
+                angle = 0; 
             }
 
-            tempo.Text = songList[_angle].Tempo.ToString();
-            songName.Text = songList[_angle].Name;
+            tempo.Text = songList[angle].Tempo.ToString();
+            songName.Text = songList[angle].Name;
 
-            _rotating = false;
+            rotating = false;
            
         }
     }

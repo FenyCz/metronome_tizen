@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,9 +24,11 @@ using MyMetronomeApp.PlayerViews;
 
 namespace MyMetronomeApp
 {
+    // třída představující hlavní stránku
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : CirclePage
     {
+        // vytvoření instancí tříd, které se následně předávají jako parametry jednotlivým stránkám
         MetronomeViewModel mViewModel = new MetronomeViewModel();
         PlayerViewModel pViewModel = new PlayerViewModel();
         BluetoothHandler mHandler;
@@ -29,6 +39,8 @@ namespace MyMetronomeApp
             InitializeComponent();
             MakeMainListView();
         }
+
+        // funkce pro vytvoření listView
         private void MakeMainListView()
         {
             List<MListItem> mListItems = new List<MListItem>
@@ -41,6 +53,7 @@ namespace MyMetronomeApp
             MainList.ItemsSource = mListItems;
         }
 
+        // funkce pro otevření nové stránky dle kliknutí uživatele
         private void ItemTapped(object sender, ItemTappedEventArgs e)
         {
             MListItem item = (MListItem)e.Item;

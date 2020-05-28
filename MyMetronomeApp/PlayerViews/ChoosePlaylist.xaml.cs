@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,6 +21,8 @@ using MyMetronomeApp.ViewModel;
 
 namespace MyMetronomeApp.PlayerViews
 {
+
+    // třída představující stránku s výběrem uložených playlistů
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChoosePlaylist : CirclePage
     {
@@ -25,7 +35,8 @@ namespace MyMetronomeApp.PlayerViews
             InitializeComponent();
             PlaylistList.ItemsSource = pViewModel.pListItems;
         }
-
+        
+        // kliknutím na playlist ho otevřeme v nové stránce
         private void ItemTapped(object sender, ItemTappedEventArgs e)
         {
             Playlist item = (Playlist)e.Item;

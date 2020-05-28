@@ -1,4 +1,12 @@
-﻿using System;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -8,6 +16,7 @@ using System.Text;
 
 namespace MyMetronomeApp.ViewModel
 {
+    // třída rozšířující rozhraní INotifyPropertyChanged umožňující oboustranný databinding
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
 

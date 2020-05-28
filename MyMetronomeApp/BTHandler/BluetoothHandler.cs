@@ -1,4 +1,12 @@
-﻿using MyMetronomeApp.SettingsViews;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using MyMetronomeApp.SettingsViews;
 using MyMetronomeApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,6 +16,7 @@ using Tizen.Network.Bluetooth;
 
 namespace MyMetronomeApp.BTHandler
 {
+    // třída uchovávájící si informace o Bluetooth připojení 
     public class BluetoothHandler
     {  
         public static IBluetoothClientSocket Client;

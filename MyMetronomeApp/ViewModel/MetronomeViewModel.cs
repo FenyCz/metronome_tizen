@@ -1,4 +1,12 @@
-﻿using MyMetronomeApp.Model;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using MyMetronomeApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +20,7 @@ using Xamarin.Forms;
 namespace MyMetronomeApp.ViewModel
 {
 
+    // třída představující ViewModel v rámci architektury MVVM
     public class MetronomeViewModel : ViewModelBase
     {
         public int currentValue = 120;
@@ -20,6 +29,7 @@ namespace MyMetronomeApp.ViewModel
         public bool isPlaying = false;
         readonly Vibrator vibrator = Vibrator.Vibrators[0];
 
+        // proměnná pro nastavování tempa
         public int CurrentValue
         {
             set
@@ -28,11 +38,8 @@ namespace MyMetronomeApp.ViewModel
                 {
                     currentValue = value;
                     SetProperty(ref currentValue, value);
-                    //Tizen.Wearable.CircularUI.Forms.Toast.DisplayText(currentValue.ToString(), 5000);
-
-                    //OnPropertyChanged();
-                    //mModel.Tempo = currentValue;
-                          
+                    
+                    // pokud metronom hraje, nastavíme nový běh metronomu      
                     if (isPlaying)
                     {
                         timer.Stop();
@@ -50,21 +57,21 @@ namespace MyMetronomeApp.ViewModel
             get { return currentValue; }
         }
 
+        // konstruktor
         public MetronomeViewModel()
         {
-            //CurrentValue = mModel.Tempo;
-
             startMetronome = new Command(PlayStopCommand);
 
             timer.Elapsed += ClickEvent;
         }
 
+        // funkce pro zapínání a vypínání metronomu
         private void PlayStopCommand(object obj)
         {
             if (!isPlaying)
             {
                 isPlaying = true;
-                //DevicePowerRequestLock((int)Power_Type.CPU, 0);
+
                 currentInterval = 59000 / currentValue;
                 timer.AutoReset = false;
                 timer.Interval = currentInterval;
@@ -78,10 +85,10 @@ namespace MyMetronomeApp.ViewModel
             }
         }
 
+        // funkce pro vykonávání vybrování
         private void ClickEvent(object sender, ElapsedEventArgs e)
         {
             vibrator.Vibrate(60, 100);
-            //timer.AutoReset = true;
             timer.Start();
         }
 

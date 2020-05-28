@@ -1,7 +1,16 @@
-﻿using Tizen.Network.Bluetooth;
+﻿/*
+ * Bakalářská práce - Metronom pro mobilní zařízení Android
+ *
+ * VUT FIT 2019/20
+ *
+ * Autor: František Pomkla
+ */
+
+using Tizen.Network.Bluetooth;
 
 namespace MyMetronomeApp
 {
+    // pomocná třída pro vytváření položek do listView
     public class MListItem
     {
         public BluetoothDevice DeviceFound { get; set; }
